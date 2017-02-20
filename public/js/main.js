@@ -1,1 +1,3 @@
-$("#geo-complete-input").geocomplete();
+$(function() {
+    $("#geo-complete-input").geocomplete({details: "#geo-complete-form"});
+});

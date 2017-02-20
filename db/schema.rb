@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220153558) do
+ActiveRecord::Schema.define(version: 20170220191346) do
 
   create_table "calls", force: :cascade do |t|
     t.string   "bioguide_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20170220153558) do
     t.string   "postal_code"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "phone"
+    t.string   "office_type"
   end
 
   create_table "reps", force: :cascade do |t|

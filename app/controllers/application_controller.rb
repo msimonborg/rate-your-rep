@@ -23,7 +23,12 @@ class ApplicationController < Sinatra::Base
   get '/privacy-policy' do
     erb :'privacy-policy'
   end
-  
+
+  post '/geo' do
+    @reps = Rep.find_by_geo(params)
+    erb "<%= @reps.last.url %>"
+  end
+
   helpers do
     include Helpers
   end

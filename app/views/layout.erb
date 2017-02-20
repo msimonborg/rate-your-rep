@@ -122,10 +122,10 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
             <h5 class="navbar-text">Find reps:</h5>
-            <form class="navbar-form navbar-left" action="/geo" method="post">
-              <div class="form-group">
-                <input id="geo-complete-input" name="address" type="text" class="form-control" placeholder="Enter your zip">
-                <input name="lat" type="hidden" id="lat" value="">
+            <form id="geo-complete-form" class="navbar-form navbar-left" action="/geo" method="post">
+              <div class="form-group form-address">
+                <input id="geo-complete-input" type="text" class="form-control form-input" placeholder="Enter your zip">
+                <input name="lat" type="hidden" class="form-control form-input" id="lat" value="">
                 <input name="lng" type="hidden" id="lng" value="">
               </div>
               <button type="submit" class="btn btn-default">Search</button>
