@@ -17,6 +17,6 @@
 }
 
 #signup-modal-button:active, #signup-modal-button:focus, #signup-modal-button:active:focus {
-  background-color: #337ab7 important!;
-  box-shadow: none important!;
+  background-color: #337ab7;
+  box-shadow: none;
 }
