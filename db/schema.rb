@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220034533) do
+ActiveRecord::Schema.define(version: 20170220143228) do
+
+  create_table "reps", force: :cascade do |t|
+    t.string   "bioguide_id"
+    t.string   "official_full"
+    t.string   "family_name"
+    t.string   "given_name"
+    t.string   "additional_name"
+    t.string   "honorific_prefix"
+    t.string   "honorific_suffix"
+    t.string   "party_identification"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
