@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/geo' do
-    @reps = Rep.find_by_geo(params)
+    @reps = Rep.search_by_geo(params)
     erb "<%= @reps.last.url %>"
   end
 
