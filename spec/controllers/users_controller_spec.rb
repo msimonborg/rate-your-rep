@@ -19,14 +19,14 @@ describe UsersController do
       params = { email: 'wrong_email@bad.com', password: 'password' }
       post '/login', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/login')
+      expect(last_response.location).to_not include('/users')
     end
 
     it 'does not log in a user if the password doesn\'t match' do
       params = { email: 'email@example.com', password: 'password1' }
       post '/login', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/login')
+      expect(last_response.location).to_not include('/users')
     end
   end
 
@@ -43,35 +43,35 @@ describe UsersController do
       params = { username: '', email: 'email@example.com', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with invalid email' do
       params = { username: 'Test User', email: 'email@', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with blank email' do
       params = { username: 'Test User', email: '', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with invalid password' do
       params = { username: 'Test User', email: 'email@example.com', password: 'passwor' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
 
-    it 'fails with blank email' do
+    it 'fails with blank password' do
       params = { username: 'Test User', email: 'email@example.com', password: '' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
   end
 
@@ -88,7 +88,7 @@ describe UsersController do
 
       get '/logout'
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/')
+      expect(last_response.location).to_not include('/users')
     end
   end
 end
