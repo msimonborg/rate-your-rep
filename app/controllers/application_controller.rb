@@ -16,6 +16,14 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/terms-of-service' do
+    erb :'terms-of-service'
+  end
+
+  get '/privacy-policy' do
+    erb :'privacy-policy'
+  end
+  
   helpers do
     include Helpers
   end
