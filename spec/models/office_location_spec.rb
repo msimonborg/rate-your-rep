@@ -5,7 +5,8 @@ describe 'OfficeLocation' do
     @office1 = OfficeLocation.create(bioguide_id: 'A000DS32',
                                      locality: 'locality1',
                                      region: 'region1',
-                                     postal_code: 'postal_code1')
+                                     postal_code: 'postal_code1',
+                                     office_type: 'district')
 
     @rep1 = Rep.create(bioguide_id: 'A000DS32',
                        official_full: 'Madam Senator',

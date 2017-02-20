@@ -78,7 +78,8 @@ describe 'User' do
       @office1 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
                                        locality: 'locality1',
                                        region: 'region1',
-                                       postal_code: 'postal_code1')
+                                       postal_code: 'postal_code1',
+                                       office_type: 'district')
 
       @call1 = Call.create(bioguide_id: @rep1.bioguide_id,
                            comments: 'very satisfied',

@@ -116,24 +116,27 @@ describe 'Rep' do
       @office1 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
                                       locality: 'locality1',
                                       region: 'region1',
-                                      postal_code: 'postal_code1')
+                                      postal_code: 'postal_code1',
+                                      office_type: 'district')
     end
 
     describe 'has many office locations' do
-      it 'has many office locations associated by Bioguide ID' do
+      it 'associated by Bioguide ID' do
         office2 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
                                         locality: 'locality2',
                                         region: 'region2',
-                                        postal_code: 'postal_code2')
+                                        postal_code: 'postal_code2',
+                                        office_type: 'district')
 
         expect(@rep1.office_locations.count).to eq(2)
       end
 
-      it 'only has office locations with the same Bioguide ID' do
+      it 'only with the same Bioguide ID' do
         office2 = OfficeLocation.create(bioguide_id: 'different',
                                         locality: 'locality2',
                                         region: 'region2',
-                                        postal_code: 'postal_code2')
+                                        postal_code: 'postal_code2',
+                                        office_type: 'district')
 
         expect(@rep1.office_locations.count).to eq(1)
         expect(@rep1.office_locations).to include(@office1)
