@@ -5,7 +5,7 @@ describe UsersController do
 
   describe 'Log In' do
     before do
-      @user1 = User.create(name: 'Test User', email: 'email@example.com', password: 'password')
+      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
     end
 
     it 'logs in with valid email and password' do
@@ -31,44 +31,44 @@ describe UsersController do
   end
 
   describe 'Sign Up' do
-    it 'succeeds with valid name, email, and password' do
-      params = { name: 'Test User', email: 'email@example.com', password: 'password' }
+    it 'succeeds with valid username, email, and password' do
+      params = { username: 'Test User', email: 'email@example.com', password: 'password' }
       post '/signup', params
       user = User.last
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include("/users/#{user.id}")
     end
 
-    it 'fails with blank name' do
-      params = { name: '', email: 'email@example.com', password: 'password' }
+    it 'fails with blank username' do
+      params = { username: '', email: 'email@example.com', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include('/signup')
     end
 
     it 'fails with invalid email' do
-      params = { name: 'Test User', email: 'email@', password: 'password' }
+      params = { username: 'Test User', email: 'email@', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include('/signup')
     end
 
     it 'fails with blank email' do
-      params = { name: 'Test User', email: '', password: 'password' }
+      params = { username: 'Test User', email: '', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include('/signup')
     end
 
     it 'fails with invalid password' do
-      params = { name: 'Test User', email: 'email@example.com', password: 'passwor' }
+      params = { username: 'Test User', email: 'email@example.com', password: 'passwor' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include('/signup')
     end
 
     it 'fails with blank email' do
-      params = { name: 'Test User', email: 'email@example.com', password: '' }
+      params = { username: 'Test User', email: 'email@example.com', password: '' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include('/signup')

@@ -20,6 +20,106 @@
     <![endif]-->
   </head>
   <body>
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="col-sm-12 fwitter-form-message">
+              <h1>Sign up for an account</h1>
+            </div>
+            <% if flash[:message] %>
+              <% flash[:message].each do |message| %>
+                <div class="form-group has-error">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <p class="control-label"><%= message %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+            <form class="form-horizontal" action="/signup" method="post">
+              <div class="form-group">
+                <!-- <label for="inputUsername3" class="col-sm-2 control-label">Username</label> -->
+                <div class="col-sm-8 col-sm-offset-2">
+                  <input type="username" name="username"class="form-control" id="inputUsername3" placeholder="Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
+                <div class="col-sm-8 col-sm-offset-2">
+                  <input type="email" name="email"class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
+                <div class="col-sm-8 col-sm-offset-2">
+                  <input type="password" name="password"class="form-control" id="inputPassword3" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group fwitter-form-button">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                </div>
+              </div>
+            </form>
+            <div style="text-align:center">
+              <p>Already have an account?   <a class="btn btn-default" href="#" role="button" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Log In</a></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Sign Up Modal -->
+
+    <!-- Log In Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="col-sm-12 fwitter-form-message">
+              <h1>Log in to your account</h1>
+            </div>
+            <% if flash[:message] %>
+              <% flash[:message].each do |message| %>
+                <div class="form-group has-error">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <p class="control-label"><%= message %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+            <form class="form-horizontal" action="/login" method="post">
+              <div class="form-group">
+                <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
+                <div class="col-sm-8 col-sm-offset-2">
+                  <input type="email" name="email"class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
+                <div class="col-sm-8 col-sm-offset-2">
+                  <input type="password" name="password"class="form-control" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group fwitter-form-button">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                </div>
+              </div>
+            </form>
+            <div style="text-align:center">
+              <p>Don't have an account?   <a class="btn btn-default" href="#" role="button" data-dismiss="modal" data-toggle="modal" data-target="#signup-modal">Sign Up</a></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Log In Modal -->
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -46,14 +146,19 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/users/<%= current_user.slug %>">Profile</a></li>
+                <li><a href="/users/<%= current_user.id %>">Profile</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/logout">Log Out</a></li>
               </ul>
             </li>
             <% else %>
-            <li><a href="/signup">Sign Up</a></li>
-            <li><a href="/login">Log In</a></li>
+            <!-- Button trigger modal -->
+            <li><a href="#" data-toggle="modal" data-target="#signup-modal">
+              Sign Up
+            </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#login-modal">
+              Log In
+            </a></li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -91,13 +196,13 @@
       </div>
       <hr>
         <div class="row">
-            <div class="col-lg-12">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="https://www.github.com/msimonborg" target="blank">© 2017 m. simon borg</a></li>
-                    <li><a href="/terms-of-service">Terms of Service</a></li>
-                    <li><a href="/privacy-policy">Privacy</a></li>
-                </ul>
-            </div>
+          <div class="col-lg-12">
+            <ul class="nav nav-pills nav-justified">
+              <li><a href="https://www.github.com/msimonborg" target="blank">© 2017 m. simon borg</a></li>
+              <li><a href="/terms-of-service">Terms of Service</a></li>
+              <li><a href="/privacy-policy">Privacy</a></li>
+            </ul>
+          </div>
         </div>
     </div>
 
