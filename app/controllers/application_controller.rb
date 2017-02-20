@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   use Rack::Flash
 
   get '/' do
-    'hello world'
+    erb :index
   end
 
   helpers do
