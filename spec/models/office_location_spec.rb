@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'OfficeLocation' do
   before do
     @office1 = OfficeLocation.create(bioguide_id: 'A000DS32',
-                                    locality: 'locality1',
-                                    region: 'region1',
-                                    postal_code: 'postal_code1')
+                                     locality: 'locality1',
+                                     region: 'region1',
+                                     postal_code: 'postal_code1')
 
     @rep1 = Rep.create(bioguide_id: 'A000DS32',
                        official_full: 'Madam Senator',
@@ -70,7 +70,23 @@ describe 'OfficeLocation' do
     end
   end
 
-  describe 'associating office locations' do
+  describe 'associations' do
+    before do
+      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+
+      @call1 = Call.create(bioguide_id: @rep1.bioguide_id,
+                           comments: 'very satisfied',
+                           got_through: true,
+                           rating: 4,
+                           user: @user1)
+
+      @call2 = Call.create(bioguide_id: @rep1.bioguide_id,
+                           comments: 'very frustrated',
+                           mailbox_full: true,
+                           rating: 2,
+                           user: @user1)
+    end
+
     it 'belongs to the Rep with the same Bioguide ID' do
       expect(@office1.rep).to eq(@rep1)
     end
@@ -85,6 +101,31 @@ describe 'OfficeLocation' do
 
       expect(@office1.rep).to eq(@rep1)
       expect(@office1.rep).to_not eq(rep2)
+    end
+
+    it 'has many calls' do
+      expect(@office1.calls.count).to eq(2)
+      expect(@office1.calls).to include(@call1)
+      expect(@office1.calls).to include(@call2)
+    end
+
+    it 'has many users through calls' do
+      expect(@office1.users.count).to eq(2)
+      expect(@office1.users.distinct.count).to eq(1)
+      expect(@office1.users.distinct).to include(@user1)
+    end
+
+    it 'only has calls with the same Bioguide ID' do
+      call3 = Call.create(bioguide_id: 'different',
+                          comments: 'very frustrated',
+                          mailbox_full: true,
+                          rating: 2,
+                          user: @user1)
+
+      expect(@office1.calls.count).to eq(2)
+      expect(@office1.calls).to include(@call1)
+      expect(@office1.calls).to include(@call2)
+      expect(@office1.calls).to_not include(call3)
     end
   end
 end
