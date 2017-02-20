@@ -1,0 +1,1 @@
+$("#geo-complete-input").geocomplete();

@@ -123,7 +123,9 @@
             <% if logged_in? %>
             <form class="navbar-form navbar-left" action="/tweets" method="post">
               <div class="form-group">
-                <input name="tweet[content]" type="text" class="form-control" placeholder="Find reps">
+                <input id="geo-complete-input" name="address" type="text" class="form-control" placeholder="Enter your zip">
+                <input name="lat" type="hidden" id="lat" value="">
+                <input name="lng" type="hidden" id="lng" value="">
               </div>
               <button type="submit" class="btn btn-default">Search</button>
             </form>
@@ -193,7 +195,12 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Google Geocomplete and Places API plugins -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN47V710PFxcFAGY3Gx6hipg7P3CWcQn8&libraries=places&v=3"></script>
+    <script src="/js/jquery.geocomplete.min.js"></script>
+    <!-- End of Google APIs -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/main.js"></script>
     <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
