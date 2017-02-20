@@ -1,3 +1,8 @@
-/*.modal-footer {
+/***** MODALS ******/
+.modal-title {
+  text-align: center;
+}
+
+.tyr-modal-form-button {
   margin-top: 2em;
-}*/
+}

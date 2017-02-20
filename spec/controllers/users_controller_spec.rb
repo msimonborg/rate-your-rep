@@ -43,35 +43,52 @@ describe UsersController do
       params = { username: '', email: 'email@example.com', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/signup')
+      expect(last_response.location).to include('/')
     end
 
     it 'fails with invalid email' do
       params = { username: 'Test User', email: 'email@', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/signup')
+      expect(last_response.location).to include('/')
     end
 
     it 'fails with blank email' do
       params = { username: 'Test User', email: '', password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/signup')
+      expect(last_response.location).to include('/')
     end
 
     it 'fails with invalid password' do
       params = { username: 'Test User', email: 'email@example.com', password: 'passwor' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/signup')
+      expect(last_response.location).to include('/')
     end
 
     it 'fails with blank email' do
       params = { username: 'Test User', email: 'email@example.com', password: '' }
       post '/signup', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include('/signup')
+      expect(last_response.location).to include('/')
+    end
+  end
+
+  describe 'Log Out' do
+    before do
+      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+    end
+
+    it 'logs out if logged in' do
+      params = { email: 'email@example.com', password: 'password' }
+      post '/login', params
+      expect(last_response.status).to eq(302)
+      expect(last_response.location).to include("/users/#{@user1.id}")
+
+      get '/logout'
+      expect(last_response.status).to eq(302)
+      expect(last_response.location).to include('/')
     end
   end
 end

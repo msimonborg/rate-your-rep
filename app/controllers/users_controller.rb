@@ -24,8 +24,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
-      flash[:message] = ["Incorrect email/password match, please try again."]
-      redirect '/signup'
+      flash[:message] = @user.errors.full_messages.uniq
+      redirect '/'
     end
   end
 
@@ -39,5 +39,12 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
     erb :'users/show'
+  end
+
+  get '/logout' do
+    if logged_in?
+      session.clear
+    end
+    redirect '/'
   end
 end
