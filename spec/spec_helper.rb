@@ -41,6 +41,6 @@ class TestHelper
   attr_accessor :session
 
   def initialize(session={})
-    @session = session
+    self.session = session
   end
 end
