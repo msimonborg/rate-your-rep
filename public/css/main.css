@@ -1,3 +1,7 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 /***** MODALS ******/
 .modal-title {
   text-align: center;
@@ -19,4 +23,46 @@
 #signup-modal-button:active, #signup-modal-button:focus, #signup-modal-button:active:focus {
   background-color: #337ab7;
   box-shadow: none;
+}
+
+
+/**** About ****/
+#about-link:hover {
+  text-decoration: none;
+}
+
+#about {
+  color: #384B72;
+  font-size: 200%;
+}
+
+#about p.paragraph {
+  font-weight: lighter;
+}
+
+#about p.headline {
+  font-size: 130%;
+}
+
+#yelp-for-congress {
+  margin-top: 5em;
+  margin-bottom: 8em;
+  font-size: 130%;
+}
+
+#yelp-for-congress h1 {
+  text-align: center;
+}
+
+#yelp-for-congress p {
+  text-align: right;
+}
+
+#privacy-policy {
+  margin-top: 5em;
+  margin-bottom: 20em;
+}
+
+#privacy-policy p {
+  font-size: 150%;
 }

@@ -1,18 +1,40 @@
-<% if flash[:message] %>
-  <div class="alert alert-dismissable alert-danger" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <% flash[:message].each do |message| %>
-      <p><%= message %></p>
-    <% end %>
+<div id="landing-page-background">
+  <% if flash[:message] %>
+    <div class="alert alert-dismissable alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <% flash[:message].each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Don't let them hide.</h1>
+      <p>Rate your representation. Make civics great again!</p>
+      <% if logged_in? %>
+        <p><a class="btn btn-primary btn-lg" href="/users/<%= current_user.id %>" role="button">Let's Get Started</a></p>
+      <% else %>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#signup-modal">Sign Up to Track Your Rep</a></p>
+      <% end %>
+      <p><a id="about-link" href="#about">Learn more</a></p>
+    </div>
   </div>
-<% end %>
-<div class="jumbotron">
-  <div class="container">
-    <h1>Don't let them hide.</h1>
-    <p>Rate your representation. Make civics great again!</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#signup-modal">Sign Up to Track Your Rep</a></p>
-    <p><a href="#">Learn more</a></p>
+  <div id="yelp-for-congress" class="container">
+    <div class="col-sm-12">
+      <h1>"It's like Yelp for Congress"</h1>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+      <p>- us</p>
+    </div>
+  </div>
+  <div id="about" class="container">
+    <p class="headline">Calling is an effective way to participate in our democracy.</p>
+    <p class="paragraph">As more people catch on to this idea and make more calls, some elected officials will try to hide behind high call volumes and avoid picking up the phones. We need to hold them accountable.</p>
+    <p class="headline">Yelp for Congress.</p>
+    <p class="paragraph">Track Your Rep lets you record your history and success rates for every call you make to Congress. You can rate your reps based on your satisfaction with the experience, view stats for each member, and share the results on social media.</p>
+    <p class="headline">Let's remind them that they work for us.</p>
+    <p class="paragraph">A lot of members of Congress seem more interested in doing what's "good for business". So let's treat them like a business, except we're the owners, and it's time for their performance review.</p>
   </div>
 </div>
