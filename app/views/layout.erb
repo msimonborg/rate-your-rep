@@ -121,7 +121,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-            <form class="navbar-form navbar-left" action="/tweets" method="post">
+            <h5 class="navbar-text">Find reps:</h5>
+            <form class="navbar-form navbar-left" action="/geo" method="post">
               <div class="form-group">
                 <input id="geo-complete-input" name="address" type="text" class="form-control" placeholder="Enter your zip">
                 <input name="lat" type="hidden" id="lat" value="">
@@ -139,11 +140,11 @@
             </li>
             <% else %>
             <!-- Button trigger modal -->
-            <li><a href="#" data-toggle="modal" data-target="#signup-modal">
-              Sign Up
-            </a></li>
-            <li><a href="#" data-toggle="modal" data-target="#login-modal">
+            <li><a id="login-modal-button" href="#" data-toggle="modal" data-target="#login-modal">
               Log In
+            </a></li>
+            <li><a id="signup-modal-button" href="#" class="btn btn-primary" data-toggle="modal" data-target="#signup-modal">
+              Sign Up
             </a></li>
             <!-- Button trigger modal -->
             <% end %>

@@ -6,3 +6,17 @@
 .tyr-modal-form-button {
   margin-top: 2em;
 }
+
+#signup-modal-button {
+  margin-left: 1em;
+  color: white;
+}
+
+#signup-modal-button:hover {
+  background-color: #286090;
+}
+
+#signup-modal-button:active, #signup-modal-button:focus, #signup-modal-button:active:focus {
+  background-color: #337ab7 important!;
+  box-shadow: none important!;
+}
