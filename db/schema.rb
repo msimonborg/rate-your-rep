@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220143228) do
+ActiveRecord::Schema.define(version: 20170220145933) do
+
+  create_table "office_locations", force: :cascade do |t|
+    t.string   "bioguide_id"
+    t.string   "locality"
+    t.string   "region"
+    t.string   "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "reps", force: :cascade do |t|
     t.string   "bioguide_id"
