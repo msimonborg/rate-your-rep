@@ -8,7 +8,9 @@
       </div>
       <div class="modal-body">
         <p>
-        <% call.rating.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+        <% call.rating.times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
         <%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %>
         by <a href="/users/<%= call.user.slug %>">@<%= call.user.slug %></a>
         </p>
@@ -39,12 +41,16 @@
     </div>
   </div>
   <div class="col-sm-4 call-rating">
-    <p><% call.rating.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %></p>
+    <p>
+      <% call.rating.times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+    </p>
   </div>
   <div class="col-sm-4">
     <a href="#" class="call-details-modal-button btn btn-default" data-toggle="modal" data-target="#call<%= call.id %>-details-modal">call details</a>
     <% if logged_in? && @user == current_user %>
-    <a href="#" class="call-again-button btn btn-primary">call again</a>
+      <a href="#" class="call-again-button btn btn-primary">call again</a>
     <% end %>
   </div>
 </div>

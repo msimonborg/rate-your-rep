@@ -1,16 +1,16 @@
 <div class="profile-page container">
   <div class="col-sm-6 user-greeting">
     <% if logged_in? && @user == current_user %>
-    <h1>
-      Hello, <%= @user.username %>
-    </h1>
-    <div id="new-call" class="col-sm-6">
-      <a href="#" class="btn btn-primary btn-block">new call</a>
-    </div>
+      <h1>
+        Hello, <%= @user.username %>
+      </h1>
+      <div id="new-call" class="col-sm-6">
+        <a href="#" class="btn btn-primary btn-block">new call</a>
+      </div>
     <% else %>
-    <h1>
-      <%= @user.username %>
-    </h1>
+      <h1>
+        <%= @user.username %>
+      </h1>
     <% end %>
   </div>
   <div class="call-stats col-sm-6">
@@ -28,20 +28,20 @@
         <h3><%= @user.username %> hasn't made any calls yet.</h3>
       <% end %>
     <% else %>
-    <h3>Calls this week: <%= @user.calls.this_week.count %></h3>
-    <h3>Lifetime total: <%= @user.calls.count %></h3>
-    <h3>
-      Average call rating: <%= @user.calls.average('rating').round(1) %>
-    </h3>
-  </div>
-  <div class="calls col-sm-12">
-    <h1>Call History</h1>
-    <div class="call-list col-sm-12">
-      <% @user.calls.order('created_at DESC').each do |call| %>
-        <%= partial :'calls/_show', locals: { call: call } %>
-      <% end %>
+      <h3>Calls this week: <%= @user.calls.this_week.count %></h3>
+      <h3>Lifetime total: <%= @user.calls.count %></h3>
+      <h3>
+        Average call rating: <%= @user.calls.average('rating').round(1) %>
+      </h3>
     </div>
-  </div>
+    <div class="calls col-sm-12">
+      <h1>Call History</h1>
+      <div class="call-list col-sm-12">
+        <% @user.calls.order('created_at DESC').each do |call| %>
+          <%= partial :'calls/_show', locals: { call: call } %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
   </div>
 </div>
