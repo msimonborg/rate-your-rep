@@ -79,13 +79,15 @@ describe 'OfficeLocation' do
                            comments: 'very satisfied',
                            got_through: true,
                            rating: 4,
-                           user: @user1)
+                           user: @user1,
+                           office_location: @office1)
 
       @call2 = Call.create(bioguide_id: @rep1.bioguide_id,
                            comments: 'very frustrated',
                            mailbox_full: true,
                            rating: 2,
-                           user: @user1)
+                           user: @user1,
+                           office_location: @office1)
     end
 
     it 'belongs to the Rep with the same Bioguide ID' do
@@ -116,12 +118,13 @@ describe 'OfficeLocation' do
       expect(@office1.users.distinct).to include(@user1)
     end
 
-    it 'only has calls with the same Bioguide ID' do
+    it 'only has the right calls' do
       call3 = Call.create(bioguide_id: 'different',
                           comments: 'very frustrated',
                           mailbox_full: true,
                           rating: 2,
-                          user: @user1)
+                          user: @user1,
+                          office_location_id: 10)
 
       expect(@office1.calls.count).to eq(2)
       expect(@office1.calls).to include(@call1)

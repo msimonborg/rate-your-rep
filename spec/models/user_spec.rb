@@ -85,13 +85,15 @@ describe 'User' do
                            comments: 'very satisfied',
                            got_through: true,
                            rating: 4,
-                           user: @user1)
+                           user: @user1,
+                           office_location: @office1)
 
       @call2 = Call.create(bioguide_id: @rep1.bioguide_id,
                            comments: 'very frustrated',
                            mailbox_full: true,
                            rating: 2,
-                           user: @user1)
+                           user: @user1,
+                           office_location: @office1)
     end
 
     it 'has many calls' do

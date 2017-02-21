@@ -9,6 +9,7 @@ class CreateCalls < ActiveRecord::Migration[5.0]
       t.boolean :mailbox_full, default: false
       t.integer :rating
       t.integer :user_id
+      t.integer :office_location_id
 
       t.timestamps
     end
