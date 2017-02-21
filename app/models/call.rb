@@ -7,5 +7,5 @@ class Call < ActiveRecord::Base
   validates :rating, inclusion: { in: (1..5).to_a,
     message: "%{value} is not a valid rating" }
 
-  scope :this_week, ->{ where(created_at: (Time.now.midnight - 7.day)..Time.now.midnight) }
+  scope :this_week, ->{ where(created_at: (Time.now.midnight - 7.day)..Time.now) }
 end

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Track Your Rep</title>
-
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/f1f23404b6.js"></script>
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto:300,400" rel="stylesheet">
@@ -122,17 +123,18 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-            <h5 class="navbar-text">Find reps:</h5>
+            <h5 class="navbar-text">Find reps to call:</h5>
             <form id="geo-complete-form" class="navbar-form navbar-left" action="/geo" method="post">
               <div class="form-group form-address">
                 <input id="geo-complete-input" type="text" class="form-control form-input" placeholder="Enter your zip">
                 <input name="lat" type="hidden" class="form-control form-input" id="lat" value="">
                 <input name="lng" type="hidden" id="lng" value="">
               </div>
-              <button type="submit" class="btn btn-default">Search</button>
+              <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
+            <a href="/users/<%= current_user.slug %>" class="home-btn btn btn-default navbar-left"><i class="fa fa-home" aria-hidden="true"></i></a>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/users/<%= current_user.slug %>">Profile</a></li>
                 <li><a href="/users/<%= current_user.slug %>/edit">Settings</a></li>
@@ -165,7 +167,7 @@
         <% end %>
       </div>
     <% end %>
-    
+
     <%= yield %>
 
     <div class="container text-center">

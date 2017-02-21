@@ -2,6 +2,13 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.dropdown-toggle {
+  margin-left: 0.5em;
+}
+
+.home-btn {
+  margin-top: 0.6em;
+}
 /***** MODALS ******/
 .modal-title {
   text-align: center;
@@ -79,4 +86,39 @@ body {
 
 #settings-modal-button {
   margin-top: 2em;
+}
+
+/**** User Show Page ****/
+#new-call {
+  margin-top: 1em;
+}
+
+.user-greeting {
+  padding-top: 1em;
+}
+
+.calls h1 {
+  margin-top: 3em;
+}
+
+.call-stats {
+  margin-top: 1em;
+}
+
+.call-card {
+  background-color: #efefef;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: .25px solid gray;
+  border-radius: 3px;
+}
+
+.call-card a {
+  text-decoration: none;
+}
+
+.call-rating p {
+  font-size: 200%;
+  padding: 1em;
 }
