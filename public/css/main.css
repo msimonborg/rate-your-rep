@@ -1,5 +1,14 @@
 body {
-  font-family: 'Lato', sans-serif;
+  /*font-family: 'Lato', sans-serif;*/
+  font-family: 'Inconsolata', monospace;
+}
+
+div.top-margin {
+  margin-top: 5em;
+}
+
+.navbar {
+  background-color: #FF5A5F;
 }
 
 .dropdown-toggle {
@@ -8,6 +17,19 @@ body {
 
 .home-btn {
   margin-top: 0.6em;
+}
+
+.search-btn {
+  margin-left: .25em;
+}
+
+.navbar-brand {
+  font-family: 'Inconsolata', monospace;
+}
+
+.jumbotron {
+  margin-top: 3.7em;
+  background-color: #edecef;
 }
 /***** MODALS ******/
 .modal-title {
@@ -21,14 +43,15 @@ body {
 #signup-modal-button {
   margin-left: 1em;
   color: white;
-}
-
-#signup-modal-button:hover {
   background-color: #286090;
 }
 
-#signup-modal-button:active, #signup-modal-button:focus, #signup-modal-button:active:focus {
+#signup-modal-button:hover {
   background-color: #337ab7;
+}
+
+#signup-modal-button:active, #signup-modal-button:focus, #signup-modal-button:active:focus {
+  background-color: #286090;
   box-shadow: none;
 }
 
@@ -41,27 +64,29 @@ body {
 #about {
   color: #384B72;
   font-size: 200%;
+  margin-top: 2em;
 }
 
 #about p.paragraph {
   font-weight: lighter;
+  font-size: 90%;
 }
 
 #about p.headline {
-  font-size: 130%;
+  font-size: 110%;
 }
 
-#yelp-for-congress {
+#calls-to-date {
   margin-top: 5em;
-  margin-bottom: 8em;
+  margin-bottom: 10em;
   font-size: 130%;
 }
 
-#yelp-for-congress h1 {
+#calls-to-date h1 {
   text-align: center;
 }
 
-#yelp-for-congress p {
+#calls-to-date p {
   text-align: right;
 }
 
@@ -76,7 +101,7 @@ body {
 
 /**** Account Settings ****/
 #account-settings {
-  background-color: #efefef;
+  background-color: #edecef;
   padding: 2em;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -106,7 +131,7 @@ body {
 }
 
 .call-card {
-  background-color: #efefef;
+  background-color: #edecef;
   padding: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -121,4 +146,8 @@ body {
 .call-rating p {
   font-size: 200%;
   padding: 1em;
+}
+
+.fa {
+  color: #FF5A5F;
 }

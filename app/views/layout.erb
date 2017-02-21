@@ -10,7 +10,7 @@
     <script src="https://use.fontawesome.com/f1f23404b6.js"></script>
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300|Roboto:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato:300" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
 
@@ -106,7 +106,7 @@
       </div>
     </div><!-- End Log In Modal -->
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -116,25 +116,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Track Your Rep</a>
+          <a class="navbar-brand" href="/" style="color:white;">Track Your Rep</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-            <h5 class="navbar-text">Find reps to call:</h5>
+            <h5 class="navbar-text" style="color:white;">Find reps to call:</h5>
             <form id="geo-complete-form" class="navbar-form navbar-left" action="/geo" method="post">
               <div class="form-group form-address">
                 <input id="geo-complete-input" type="text" class="form-control form-input" placeholder="Enter your zip">
                 <input name="lat" type="hidden" class="form-control form-input" id="lat" value="">
                 <input name="lng" type="hidden" id="lng" value="">
               </div>
-              <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+              <button type="submit" class="search-btn btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
             <a href="/users/<%= current_user.slug %>" class="home-btn btn btn-default navbar-left"><i class="fa fa-home" aria-hidden="true"></i></a>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Account <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> <i class="fa fa-bars" aria-hidden="true" style="color:white;"></i> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/users/<%= current_user.slug %>">Profile</a></li>
                 <li><a href="/users/<%= current_user.slug %>/edit">Settings</a></li>
@@ -144,7 +144,7 @@
             </li>
             <% else %>
             <!-- Button trigger modal -->
-            <li><a id="login-modal-button" href="#" data-toggle="modal" data-target="#login-modal">
+            <li><a id="login-modal-button" href="#" data-toggle="modal" data-target="#login-modal" style="color:white;">
               Log In
             </a></li>
             <li><a id="signup-modal-button" href="#" class="btn btn-primary" data-toggle="modal" data-target="#signup-modal">
@@ -156,6 +156,9 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
+    <div class="col-sm-12 top-margin">
+    </div>
 
     <% if flash[:message] %>
       <div class="alert alert-dismissable alert-danger" role="alert">
