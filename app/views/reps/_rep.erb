@@ -39,7 +39,42 @@
 <!-- End Office Details Modal -->
 <div class="tyr-card rep-card col-sm-10 col-sm-offset-1">
   <div class="page-header">
-    <h3><%= rep.official_full %> <small><%= rep.party_identification %> | <%= rep.honorific_prefix %></small> <a href="#" class="btn btn-default btn-xs">rep details</a></h3>
+    <h3><%= rep.official_full %> <small><%= rep.party_identification %> | <%= rep.honorific_prefix %>
+      <% if rep.state %>
+        | <%= rep.state %>
+      <% end %>
+      <% if rep.district %>
+        | District <%= rep.district %>
+      <% end %>
+      <% if rep.twitter %>
+        <a href="https://www.twitter.com/<%= rep.twitter %>" target="blank">
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+        </a>
+      <% end %>
+      <% if rep.facebook %>
+        <a href="https://www.facebook.com/<%= rep.facebook %>" target="blank">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      <% end %>
+      <% if rep.youtube %>
+        <a href="https://www.youtube.com/<%= rep.youtube %>" target="blank">
+          <i class="fa fa-youtube-play" aria-hidden="true"></i>
+        </a>
+      <% end %>
+      <% if rep.instagram %>
+        <a href="https://www.instagram.com/<%= rep.instagram %>" target="blank">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      <% end %>
+      <% if rep.url %>
+        <a href="<%= rep.url %>" target="blank">
+          <i class="fa fa-laptop" aria-hidden="true"></i>
+        </a>
+      <% end %>
+    </small>
+    <% unless request.fullpath == "/reps/#{rep.bioguide_id}" %>
+      <a href="/reps/<%= rep.bioguide_id %>" class="btn btn-default btn-xs">rep details</a>
+    <% end %></h3>
   </div>
   <div class="col-sm-4">
     <p><%= rep.calls.count %> calls</p>

@@ -24,4 +24,9 @@ class RepsController < ApplicationController
     @address = params[:address]
     erb :'reps/geo'
   end
+
+  get '/reps/:bioguide_id' do
+    @rep = Rep.search_by_bioguide_id(params[:bioguide_id]).first
+    erb :'reps/show'
+  end
 end

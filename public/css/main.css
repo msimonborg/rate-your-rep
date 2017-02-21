@@ -185,3 +185,12 @@ div.call-stats a {
 #reps-geo-page-form {
   margin-top: 1em;
 }
+
+.rep-photo {
+  max-height: 300px;
+  border: 1.5px solid #FF5A5F;
+  border-radius: 3px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
