@@ -13,4 +13,15 @@ class RepsController < ApplicationController
     @reps = Rep.best_rated
     erb :'reps/best_rated'
   end
+
+  get '/reps/geo' do
+    @reps = []
+    erb :'reps/geo'
+  end
+
+  post '/reps/geo' do
+    @reps    = Rep.search_by_geo(params)
+    @address = params[:address]
+    erb :'reps/geo'
+  end
 end

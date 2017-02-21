@@ -45,6 +45,14 @@ div.call-stats a {
   margin-bottom: 1em;
 }
 
+.dropdown-menu {
+  background-color: #FF5A5F;
+}
+
+.dropdown-menu li a {
+  color: white;
+}
+
 /***** MODALS ******/
 .modal-title {
   text-align: center;
@@ -171,4 +179,9 @@ div.call-stats a {
 
 .reps-index a {
   text-decoration: none;
+}
+
+/**** Reps Show Page ****/
+#reps-geo-page-form {
+  margin-top: 1em;
 }

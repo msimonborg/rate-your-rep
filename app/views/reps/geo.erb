@@ -1,0 +1,37 @@
+<div class="reps-index container">
+  <div id="rep-index-title" class="col-sm-12">
+    <% if @reps.blank? %>
+      <h1>Search for reps by location</h1>
+    <% else %>
+      <h1>Reps for <%= @address %></h1>
+    <% end %>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="/reps">All</a></li>
+      <li role="presentation"><a href="/reps/most-called">Most Called</a></li>
+      <li role="presentation"><a href="/reps/best-rated">Best Rated</a></li>
+      <li role="presentation" class="active"><a href="/reps/geo">Search by Location</a></li>
+    </ul>
+  </div>
+
+  <!-- Geocomplete form -->
+  <div class="col-sm-10 col-sm-offset-1">
+    <form id="reps-geo-page-form" class="geo-complete-form" action="/reps/geo" method="post">
+      <div class="col-sm-8">
+        <div class="form-group form-address">
+          <input name="address" type="text" class="geo-complete-input form-control form-input" placeholder="Enter address">
+          <input name="lat" type="hidden" class="form-control form-input" value="">
+          <input name="lng" type="hidden" value="">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <button type="submit" class="search-btn btn btn-primary btn-block">
+          Search
+        </button>
+      </div>
+    </form>
+  </div> <!-- Geocomplete form -->
+
+  <% @reps.each do |rep| %>
+    <%= partial :'reps/_show', locals: { rep: rep } %>
+  <% end %>
+</div>

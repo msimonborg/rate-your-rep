@@ -124,10 +124,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-            <h5 class="navbar-text" style="color:white;">Find reps to call:</h5>
-            <form id="geo-complete-form" class="navbar-form navbar-left" action="/geo" method="post">
+            <h5 class="navbar-text" style="color:white;">Find reps by location:</h5>
+            <form class="geo-complete-form navbar-form navbar-left" action="/reps/geo" method="post">
               <div class="form-group form-address">
-                <input id="geo-complete-input" type="text" class="form-control form-input" placeholder="Enter your zip">
+                <input name="address" type="text" class="geo-complete-input form-control form-input" placeholder="Enter address">
                 <input name="lat" type="hidden" class="form-control form-input" id="lat" value="">
                 <input name="lng" type="hidden" id="lng" value="">
               </div>

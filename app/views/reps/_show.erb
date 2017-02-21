@@ -13,7 +13,7 @@
             <div class="panel-body">
               <h4><%= office.locality %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
               <% if office.calls.blank? %>
-                <p>No calls yet made to this office yet.</p>
+                <p>No calls made to this office yet.</p>
               <% else %>
                 <p>
                   <%= office.calls.count %> calls, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
