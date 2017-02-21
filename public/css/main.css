@@ -35,6 +35,16 @@ div.call-stats a {
   margin-top: 3.7em;
   background-color: #edecef;
 }
+
+.tyr-card {
+  background-color: #edecef;
+  border: .25px solid gray;
+  border-radius: 3px;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 /***** MODALS ******/
 .modal-title {
   text-align: center;
@@ -104,13 +114,10 @@ div.call-stats a {
 }
 
 /**** Account Settings ****/
-#account-settings {
-  background-color: #edecef;
+.tyr-card.account-card {
   padding: 2em;
   margin-top: 2em;
   margin-bottom: 2em;
-  border: .25px solid gray;
-  border-radius: 3px;
 }
 
 #settings-modal-button {
@@ -132,15 +139,6 @@ div.call-stats a {
 
 .call-stats {
   margin-top: 1em;
-}
-
-.call-card {
-  background-color: #edecef;
-  padding: 1em;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  border: .25px solid gray;
-  border-radius: 3px;
 }
 
 .call-card a {
