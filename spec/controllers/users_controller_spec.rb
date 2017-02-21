@@ -9,7 +9,7 @@ describe UsersController do
     end
 
     it 'logs in with valid email and password' do
-      params = { email: 'email@example.com', password: 'password' }
+      params = { email: 'email@example.com', password: 'password', path: '/' }
       post '/login', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include("/users/#{@user1.slug}")
@@ -81,7 +81,7 @@ describe UsersController do
     end
 
     it 'logs out if logged in' do
-      params = { email: 'email@example.com', password: 'password' }
+      params = { email: 'email@example.com', password: 'password', path: '/' }
       post '/login', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to include("/users/#{@user1.slug}")
