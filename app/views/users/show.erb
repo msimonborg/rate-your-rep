@@ -15,14 +15,18 @@
   </div>
   <div class="call-stats col-sm-6">
     <% if @user.calls.blank? %>
-    <h3>Today's a great day to make your first call.</h3>
-    <h3>You'll be on the leader boards before you know it.</h3>
-    <h3>
-      Not sure what to say? Start
-      <a href="https://www.indivisibleguide.com/resources-2/2017/2/6/scripts" target="blank">
-        here.
-      </a>
-    </h3>
+      <% if logged_in? && @user == current_user %>
+        <h3>Today's a great day to make your first call.</h3>
+        <h3>You'll be on the leader boards before you know it.</h3>
+        <h3>
+          Not sure what to say? Start
+          <a href="https://www.indivisibleguide.com/resources-2/2017/2/6/scripts" target="blank">
+            here.
+          </a>
+        </h3>
+      <% else %>
+        <h3><%= @user.username %> hasn't made any calls yet.</h3>
+      <% end %>
     <% else %>
     <h3>Calls this week: <%= @user.calls.this_week.count %></h3>
     <h3>Lifetime total: <%= @user.calls.count %></h3>
