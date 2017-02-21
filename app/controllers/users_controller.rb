@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.find_by slug: params[:slug]
+    @user = User.where(slug: params[:slug]).includes(:calls).take
     erb :'users/show'
   end
 
