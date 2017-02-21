@@ -1,0 +1,49 @@
+<!-- Call Details Modal -->
+<div class="modal fade" id="call<%= call.id %>-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Details</h2>
+      </div>
+      <div class="modal-body">
+        <p>
+        <% call.rating.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+        <%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %>
+        by <a href="/users/<%= call.user.slug %>">@<%= call.user.slug %></a>
+        </p>
+        <h4><%= call.comments.blank? ? 'This call was not reviewed' : call.comments %></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Call Details Modal -->
+
+<div class="call-card col-sm-10 col-sm-offset-1">
+  <div class="col-sm-8">
+    <div class="col-sm-6">
+      <h3><%= call.rep.official_full %></h3>
+    </div>
+    <div class="col-sm-6">
+      <h3><%= call.rep.party_identification %></h3>
+    </div>
+    <div class="col-sm-6">
+      <h3><a href="tel:<%= call.office_location.phone %>"><%= call.office_location.phone %></a> <%= call.office_location.locality %> Office</h3>
+    </div>
+    <div class="col-sm-6">
+      <h3><%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %></h3>
+    </div>
+  </div>
+  <div class="col-sm-4 call-rating">
+    <p><% call.rating.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %></p>
+  </div>
+  <div class="col-sm-4">
+    <a href="#" class="call-details-modal-button btn btn-default" data-toggle="modal" data-target="#call<%= call.id %>-details-modal">call details</a>
+    <% if @user == current_user %>
+    <a href="#" class="btn btn-primary">call again</a>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,7 @@
       Hello, <%= @user.username %>
     </h1>
     <div id="new-call" class="col-sm-6">
-      <a href="#" class="btn btn-primary btn-block">New Call</a>
+      <a href="#" class="btn btn-primary btn-block">new call</a>
     </div>
     <% else %>
     <h1>
@@ -25,30 +25,7 @@
     <h1>Call History</h1>
     <div class="call-list col-sm-12">
       <% @user.calls.order('created_at DESC').each do |call| %>
-      <div class="call-card col-sm-10 col-sm-offset-1">
-        <div class="col-sm-8">
-          <div class="col-sm-6">
-            <h3><%= call.rep.official_full %></h3>
-          </div>
-          <div class="col-sm-6">
-            <h3><%= call.rep.party_identification %></h3>
-          </div>
-          <div class="col-sm-6">
-            <h3><a href="tel:<%= call.office_location.phone %>"><%= call.office_location.phone %></a> <%= call.office_location.locality %> Office</h3>
-          </div>
-          <div class="col-sm-6">
-            <h3><%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %></h3>
-          </div>
-        </div>
-        <div class="col-sm-4 call-rating">
-          <p><% call.rating.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %></p>
-        </div>
-        <% if @user == current_user %>
-        <div class="col-sm-4">
-          <a href="#" class="btn btn-primary btn-block">Call again</a>
-        </div>
-        <% end %>
-      </div>
+      <%= partial :'calls/_show', locals: { call: call } %>
       <% end %>
     </div>
   </div>

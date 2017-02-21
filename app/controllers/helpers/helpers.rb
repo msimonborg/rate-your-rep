@@ -6,4 +6,8 @@ module Helpers
   def current_user
     User.find session[:user_id]
   end
+
+  def partial(page, options={})
+    erb page, options.merge!(layout: false)
+  end
 end
