@@ -39,7 +39,7 @@
 <!-- End Office Details Modal -->
 <div class="tyr-card rep-card col-sm-10 col-sm-offset-1">
   <div class="page-header">
-    <h3><%= rep.official_full %> <small><%= rep.party_identification %> | <%= rep.honorific_prefix %></small></h3>
+    <h3><%= rep.official_full %> <small><%= rep.party_identification %> | <%= rep.honorific_prefix %></small> <a href="#" class="btn btn-default btn-xs">rep details</a></h3>
   </div>
   <div class="col-sm-4">
     <p><%= rep.calls.count %> calls</p>
@@ -62,6 +62,6 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <a href="#" class="office-details-modal-button btn btn-default btn-block" data-toggle="modal" data-target="#rep<%= rep.id %>-office-details-modal">office details</a>
+    <a href="#" class="office-details-modal-button btn btn-primary btn-block" data-toggle="modal" data-target="#rep<%= rep.id %>-office-details-modal">view office details</a>
   </div>
 </div>
