@@ -37,6 +37,24 @@ class UsersController < ApplicationController
     end
   end
 
+  patch '/users/:slug' do
+    @user = User.find_by slug: params[:slug]
+    if @user.authenticate params[:password]
+      if params[:new_password]
+        @user.password = params[:new_password]
+      else
+        @user.username = params[:username]
+        @user.email    = params[:email]
+        @user.password = params[:password]
+        @user.add_slug
+      end
+      flash[:message] = @user.errors.full_messages unless @user.save
+    else
+      flash[:message] = ['Password does not match']
+    end
+    redirect "/users/#{@user.slug}/edit"
+  end
+
   get '/logout' do
     if logged_in?
       session.clear

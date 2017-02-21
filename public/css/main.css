@@ -66,3 +66,17 @@ body {
 #privacy-policy p {
   font-size: 150%;
 }
+
+/**** Account Settings ****/
+#account-settings {
+  background-color: #efefef;
+  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: .25px solid gray;
+  border-radius: 3px;
+}
+
+#settings-modal-button {
+  margin-top: 2em;
+}

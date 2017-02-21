@@ -9,10 +9,14 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 8 }
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
                               on: :create
-  after_create :add_slug
+  before_create :add_slug
 
   def add_slug
-    slug = username.split(' ').join('-').gsub(/(\.|!|\?|\(|\)|&|%|@)/, '').gsub('$', 's')
-    update slug: slug.downcase
+    self.slug = username.
+                split(' ').
+                join('-').
+                gsub(/(\.|!|\?|\(|\)|&|%|@)/, '').
+                gsub('$', 's').
+                downcase
   end
 end
