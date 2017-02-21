@@ -7,10 +7,7 @@
       <li role="presentation"><a href="/reps/best-rated">Best Rated</a></li>
     </ul>
   </div>
-  <!-- <div id="rep-index-title" class="col-sm-12">
-    <h1></h1>
-  </div> -->
   <% @reps.each do |rep| %>
-  <%= partial :'reps/_show', locals: { rep: rep } %>
+    <%= partial :'reps/_show', locals: { rep: rep } %>
   <% end %>
 </div>
