@@ -1,4 +1,29 @@
 <div class="container">
+  <div class="page-header">
+    <h2><%= @rep.given_name %>
+      <% unless @rep.calls.blank? %>
+        <%= case @rep.calls.average('rating').to_i.round
+        when 5
+          'is outstanding and deserves to hear it'
+        when 4
+          'is doing a great job'
+        when 3
+          'has room for improvement'
+        when 2
+          'needs to get better'
+        when 1
+          'should work on their resume'
+        end %>
+        <small>
+          <% @rep.calls.average('rating').to_i.round.times do %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          <% end %>
+        </small>
+      <% else %>
+        needs a call. <small>Why don't you be the first to oblige?</small>
+      <% end %>
+    </h2>
+  </div>
     <img class="rep-photo" src="<%= @rep.photo %>" alt="<%= @rep.official_full %> photo portrait">
   <%= partial :'reps/_rep', locals: { rep: @rep } %>
 </div>

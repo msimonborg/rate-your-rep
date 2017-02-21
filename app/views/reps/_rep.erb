@@ -11,7 +11,7 @@
         <% rep.office_locations.each do |office| %>
           <div class="panel panel-default">
             <div class="panel-body">
-              <h4><%= office.locality %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
+              <h4><%= office.locality %>, <%= office.region %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
               <% if office.calls.blank? %>
                 <p>No calls made to this office yet.</p>
               <% else %>
@@ -87,7 +87,7 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <p><%= rep.given_name %> has <%= rep.office_locations.distinct.count %> offices to call.</p>
+    <p><%= rep.given_name %> has <%= rep.office_locations.distinct.count %> offices you can call.</p>
   </div>
   <div class="col-sm-8">
     <% if rep.calls.blank? %>
