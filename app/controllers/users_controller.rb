@@ -3,7 +3,11 @@ class UsersController < ApplicationController
     @user = User.find_by email: params[:email]
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/users/#{@user.slug}"
+      if params[:path] == '/'
+        redirect "/users/#{@user.slug}"
+      else
+        redirect params[:path]
+      end
     else
       flash[:message] = ["Incorrect email/password match, please try again."]
       redirect '/'
