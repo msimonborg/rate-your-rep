@@ -14,7 +14,7 @@
       <h1>Don't let them hide.</h1>
       <p>Rate your representation. Make civics great again!</p>
       <% if logged_in? %>
-        <p><a class="btn btn-primary btn-lg" href="/users/<%= current_user.id %>" role="button">Let's Get Started</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/users/<%= current_user.slug %>" role="button">Let's Get Started</a></p>
       <% else %>
         <p><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#signup-modal">Sign Up to Track Your Rep</a></p>
       <% end %>

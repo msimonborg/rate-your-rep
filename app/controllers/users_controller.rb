@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find_by email: params[:email]
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/users/#{@user.id}"
+      redirect "/users/#{@user.slug}"
     else
       flash[:message] = ["Incorrect email/password match, please try again."]
       redirect '/'
@@ -14,14 +14,15 @@ class UsersController < ApplicationController
     @user = User.new params
     if @user.save
       session[:user_id] = @user.id
-      redirect "/users/#{@user.id}"
+      redirect "/users/#{@user.slug}"
     else
       flash[:message] = @user.errors.full_messages.uniq
       redirect '/'
     end
   end
 
-  get '/users/:id' do
+  get '/users/:slug' do
+    @user = User.find_by slug: params[:slug]
     erb :'users/show'
   end
 

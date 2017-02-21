@@ -12,7 +12,7 @@ describe UsersController do
       params = { email: 'email@example.com', password: 'password' }
       post '/login', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include("/users/#{@user1.id}")
+      expect(last_response.location).to include("/users/#{@user1.slug}")
     end
 
     it 'does not log in a user if user\'s email is not found' do
@@ -36,7 +36,7 @@ describe UsersController do
       post '/signup', params
       user = User.last
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include("/users/#{user.id}")
+      expect(last_response.location).to include("/users/#{user.slug}")
     end
 
     it 'fails with blank username' do
@@ -84,7 +84,7 @@ describe UsersController do
       params = { email: 'email@example.com', password: 'password' }
       post '/login', params
       expect(last_response.status).to eq(302)
-      expect(last_response.location).to include("/users/#{@user1.id}")
+      expect(last_response.location).to include("/users/#{@user1.slug}")
 
       get '/logout'
       expect(last_response.status).to eq(302)
