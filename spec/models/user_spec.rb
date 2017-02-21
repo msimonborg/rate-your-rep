@@ -10,6 +10,11 @@ describe 'User' do
       expect(User.count).to eq(1)
     end
 
+    it 'adds a slug after creation' do
+      expect(@user1).to respond_to(:slug)
+      expect(@user1.slug).to eq('test-user')
+    end
+
     it 'has a secure password' do
       expect(@user1.authenticate('dog')).to eq(false)
       expect(@user1.authenticate('password')).to eq(@user1)
