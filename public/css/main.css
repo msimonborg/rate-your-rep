@@ -163,3 +163,12 @@ div.call-stats a {
   margin-left: 0.5em;
   margin-top: 0.5em;
 }
+
+/**** Rep Index ****/
+#rep-index-title {
+  text-align: center;
+}
+
+.reps-index a {
+  text-decoration: none;
+}

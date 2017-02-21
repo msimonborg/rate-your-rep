@@ -1,0 +1,67 @@
+<% last_call = rep.calls.last_call %>
+<!-- Office Details Modal -->
+<div class="modal fade" id="rep<%= rep.id %>-office-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title"><%= rep.official_full %> office details.</h2>
+      </div>
+      <div class="modal-body">
+        <% rep.office_locations.each do |office| %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4><%= office.locality %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
+            <% if office.calls.blank? %>
+              <p>No calls yet made to this office yet.</p>
+            <% else %>
+              <p>
+                <%= office.calls.count %> calls, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+              </p>
+              <p>Last call made <%= office.calls.last_call.time %>
+              by <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
+              </p>
+            <% end %>
+            <form action="#" method="post">
+              <input type="hidden" name="office_id" value="<%= office.id %>">
+              <button type="submit" class="btn btn-primary btn-block">record a call</button>
+            </form>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Office Details Modal -->
+<div class="tyr-card rep-card col-sm-10 col-sm-offset-1">
+  <div class="page-header">
+    <h3><%= rep.official_full %> <small><%= rep.party_identification %> | <%= rep.honorific_prefix %></small></h3>
+  </div>
+  <div class="col-sm-4">
+    <p><%= rep.calls.count %> calls</p>
+  </div>
+  <div class="col-sm-4">
+    <% if rep.calls.blank? %>
+      <p>No rating information available.</p>
+    <% else %>
+      <p><%= rep.calls.average('rating') %> average rating.</p>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <p><%= rep.given_name %> has <%= rep.office_locations.distinct.count %> offices to call.</p>
+  </div>
+  <div class="col-sm-8">
+    <% if rep.calls.blank? %>
+      <p>No calls yet, you could be the first!</p>
+    <% else %>
+      <p>Last call made <%= last_call.time %> by <a href="/users/<%= last_call.user.slug %>">@<%= last_call.user.slug %></a> and was rated <%= last_call.rating %> stars</p>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <a href="#" class="office-details-modal-button btn btn-default btn-block" data-toggle="modal" data-target="#rep<%= rep.id %>-office-details-modal">office details</a>
+  </div>
+</div>

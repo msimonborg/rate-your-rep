@@ -8,4 +8,9 @@ class Call < ActiveRecord::Base
     message: "%{value} is not a valid rating" }
 
   scope :this_week, ->{ where(created_at: (Time.now.midnight - 7.day)..Time.now) }
+  scope :last_call, ->{ order('created_at DESC').limit(1).first }
+
+  def time
+    created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P")
+  end
 end

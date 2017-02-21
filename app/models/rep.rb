@@ -16,5 +16,15 @@ class Rep < ActiveRecord::Base
             :party_identification,
             presence: true
 
+  scope :most_called, ->{ select("*, count(calls.id) AS calls_count").
+    joins(:calls).
+    group("reps.id").
+    order("calls_count DESC") }
+
+  scope :best_rated, ->{ select("*, avg(calls.rating) AS calls_rating").
+    joins(:calls).
+    group("reps.id").
+    order("calls_rating DESC") }
+
   attr_accessor :url, :photo, :twitter, :facebook, :youtube, :instagram, :state, :district
 end

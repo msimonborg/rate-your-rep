@@ -1,0 +1,16 @@
+<div class="reps-index container">
+  <div id="rep-index-title" class="col-sm-12">
+    <h1>Reps</h1>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="/reps">All</a></li>
+      <li role="presentation" class="active"><a href="#">Most Called</a></li>
+      <li role="presentation"><a href="/reps/best-rated">Best Rated</a></li>
+    </ul>
+  </div>
+  <!-- <div id="rep-index-title" class="col-sm-12">
+    <h1></h1>
+  </div> -->
+  <% @reps.each do |rep| %>
+  <%= partial :'reps/_show', locals: { rep: rep } %>
+  <% end %>
+</div>

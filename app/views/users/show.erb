@@ -1,6 +1,6 @@
 <div class="profile-page container">
   <div class="col-sm-6 user-greeting">
-    <% if @user == current_user %>
+    <% if logged_in? && @user == current_user %>
     <h1>
       Hello, <%= @user.username %>
     </h1>
