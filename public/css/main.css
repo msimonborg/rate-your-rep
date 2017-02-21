@@ -7,6 +7,10 @@ div.top-margin {
   margin-top: 5em;
 }
 
+div.call-stats a {
+  text-decoration: none;
+}
+
 .navbar {
   background-color: #FF5A5F;
 }
@@ -153,5 +157,11 @@ div.top-margin {
 }
 
 .call-details-modal-button {
-  margin-right: 1em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+}
+
+.call-again-button {
+  margin-left: 0.5em;
+  margin-top: 0.5em;
 }

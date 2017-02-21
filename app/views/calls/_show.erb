@@ -25,10 +25,11 @@
 <div class="call-card col-sm-10 col-sm-offset-1">
   <div class="col-sm-8">
     <div class="col-sm-6">
-      <h3><%= call.rep.official_full %></h3>
+      <h3><%= call.rep.honorific_prefix %></h3>
+      <h3><%= call.rep.party_identification %></h3>
     </div>
     <div class="col-sm-6">
-      <h3><%= call.rep.party_identification %></h3>
+      <h3><%= call.rep.official_full %></h3>
     </div>
     <div class="col-sm-6">
       <h3><a href="tel:<%= call.office_location.phone %>"><%= call.office_location.phone %></a> <%= call.office_location.locality %> Office</h3>
@@ -43,7 +44,7 @@
   <div class="col-sm-4">
     <a href="#" class="call-details-modal-button btn btn-default" data-toggle="modal" data-target="#call<%= call.id %>-details-modal">call details</a>
     <% if @user == current_user %>
-    <a href="#" class="btn btn-primary">call again</a>
+    <a href="#" class="call-again-button btn btn-primary">call again</a>
     <% end %>
   </div>
 </div>
