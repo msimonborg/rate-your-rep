@@ -78,6 +78,41 @@
 </div>
 <!-- End Change Password Modal -->
 
+<!-- Delete Account Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Delete Your Account</h2>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p><strong><em>Be warned. This action is not reversable.</em></strong></p>
+          <p><strong><em>All of your call history will be lost.</em></strong></p>
+        </div>
+        <form class="form-horizontal" action="/users/<%= @user.slug %>/delete" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+              <input type="password" name="password" class="form-control" placeholder="Password (required)" required="true">
+            </div>
+          </div>
+          <div class="form-group tyr-modal-form-button">
+            <div class="col-sm-8 col-sm-offset-2">
+              <button type="submit" class="btn btn-danger btn-block">delete account</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Delete Account Modal -->
+
 <div class="container">
   <div class="col-sm-12">
     <h1>Account Settings</h1>
@@ -102,8 +137,13 @@
       <h3><a id="password-modal-button" href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#password-modal">change password</a></h3>
     </div>
     <div class="col-sm-8 col-sm-offset-2">
-      <a id="settings-modal-button" href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#edit-modal">
+      <a href="#" class="btn btn-primary btn-block settings-modal-button" data-toggle="modal" data-target="#edit-modal">
         edit
+      </a>
+    </div>
+    <div class="col-sm-8 col-sm-offset-2">
+      <a href="#" class="btn btn-danger btn-block settings-modal-button" data-toggle="modal" data-target="#delete-modal">
+        delete
       </a>
     </div>
   </div>

@@ -65,4 +65,21 @@ class UsersController < ApplicationController
     end
     redirect '/'
   end
+
+  delete '/users/:slug/delete' do
+    @user = User.find_by slug: params[:slug]
+    redirect '/' unless logged_in?
+    if @user == current_user
+      if @user.authenticate params[:password]
+        @user.destroy
+        flash[:message] = ['Account successfully deleted.']
+        redirect '/logout'
+      else
+        flash[:message] = ['Incorrect password.']
+        redirect "/users/#{@user.slug}/edit"
+      end
+    else
+      redirect "/users/#{current_user.slug}/edit"
+    end
+  end
 end
