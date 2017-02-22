@@ -80,7 +80,7 @@
     <% if rep.calls.blank? %>
       <p>No rating information available.</p>
     <% else %>
-      <p><%= rep.calls.average('rating') %> average rating.</p>
+      <p><%= rep.calls.average('rating').round(1) %> average rating.</p>
     <% end %>
   </div>
   <div class="col-sm-4">
