@@ -1,0 +1,69 @@
+<% rep = @office.rep %>
+<div class="container">
+  <form class="new-call-form form-horizontal" action="/calls" method="post">
+    <input type="hidden" name="bioguide_id" value="<%= @office.bioguide_id %>">
+    <input type="hidden" name="office_id" value="<%= @office.id %>">
+    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+    <div class="form-group">
+      <!-- <label for="inputUsername3" class="col-sm-2 control-label">Username</label> -->
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>First place the call to <%= rep.official_full %>.</h1>
+        <h1>
+          <a href="tel:<%= @office.phone %>" style="text-decoration:none">
+            <%= @office.phone %>
+          </a>
+        </h1>
+        <h3><%= rep.party_identification %>, <%= rep.honorific_prefix %></h3>
+        <h3><%= @office.locality %> office</h3>
+        <h1>Then rate your experience</h1>
+      </div>
+    </div>
+    <div class="form-group col-sm-12">
+      <div class="col-sm-8 col-sm-offset-2">
+        <select class="form-control col-sm-12" name="rating">
+          <option value="5">5 (very satisfied)</option>
+          <option value="4">4 </option>
+          <option value="3">3 </option>
+          <option value="2">2 </option>
+          <option value="1">1 (not at all satisfied)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>Select any that apply:</h1>
+        <div class="col-sm-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="true" name="got_through">I talked to a human
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="true" name="busy">The line was busy
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="true" name="voice_mail">I left a voicemail
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="true" name="mailbox_full">The mailbox was full
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>Write something short</h1>
+        <input type="text" class="form-control" name="comments" placeholder="Leave a review" maxlength="140">
+      </div>
+    </div>
+    <div class="form-group tyr-modal-form-button">
+      <div class="col-sm-8 col-sm-offset-2">
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

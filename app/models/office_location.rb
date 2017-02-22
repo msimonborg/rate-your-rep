@@ -3,7 +3,7 @@ class OfficeLocation < ActiveRecord::Base
   has_many :calls
   has_many :users, through: :calls
 
-  validates :bioguide_id, :locality, :region, :postal_code, :office_type, presence: true
+  validates :bioguide_id, :phone, :locality, :region, :postal_code, :office_type, presence: true
 
   scope :most_called, ->{ select("*, count(calls.id) AS calls_count").
     joins(:calls).

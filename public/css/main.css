@@ -209,3 +209,8 @@ div.call-stats a {
 .reps-select-label {
   font-size: 150%;
 }
+
+/**** New Call ****/
+.new-call-form {
+  margin-top: 2em;
+}

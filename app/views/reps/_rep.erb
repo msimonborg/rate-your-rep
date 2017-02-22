@@ -22,10 +22,7 @@
                 by <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
                 </p>
               <% end %>
-              <form action="/calls" method="post">
-                <input type="hidden" name="office_id" value="<%= office.id %>">
-                <button type="submit" class="btn btn-primary btn-block">record a call</button>
-              </form>
+              <a href="/calls/new/<%= office.id %>"><button type="submit" class="btn btn-primary btn-block">record a call</button></a>
             </div>
           </div>
         <% end %>

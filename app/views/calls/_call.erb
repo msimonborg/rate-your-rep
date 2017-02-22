@@ -50,7 +50,7 @@
   <div class="col-sm-4">
     <a href="#" class="call-details-modal-button btn btn-default" data-toggle="modal" data-target="#call<%= call.id %>-details-modal">call details</a>
     <% if logged_in? && @user == current_user %>
-      <a href="#" class="call-again-button btn btn-primary">call again</a>
+      <a href="/calls/new/<%= call.office_location.id %>" class="call-again-button btn btn-primary">call again</a>
     <% end %>
   </div>
 </div>

@@ -21,18 +21,15 @@
   </div>
   <div class="col-sm-6 col-sm-offset-3">
     <form id="reps-geo-page-form" class="form-horizontal geo-complete-form" action="/reps/geo" method="post">
-      <div class="col-sm-8">
         <div class="form-group form-address">
-          <input name="address" type="text" class="geo-complete-input form-control form-input" placeholder="Find by location">
+          <label class="reps-select-label" for="geo-complete-input">Find by location:</label>
+          <input name="address" type="text" class="geo-complete-input form-control form-input" placeholder="Enter address">
           <input name="lat" type="hidden" class="form-control form-input" value="">
           <input name="lng" type="hidden" value="">
         </div>
-      </div>
-      <div class="col-sm-4">
         <button type="submit" class="search-btn btn btn-primary btn-block">
           Search
         </button>
-      </div>
     </form>
   </div>
 </div>
