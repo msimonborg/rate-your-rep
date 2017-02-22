@@ -117,7 +117,8 @@ describe 'Rep' do
                                       locality: 'locality1',
                                       region: 'region1',
                                       postal_code: 'postal_code1',
-                                      office_type: 'district')
+                                      office_type: 'district',
+                                      phone: '123-456-7890')
     end
 
     describe 'has many office locations' do
@@ -126,7 +127,8 @@ describe 'Rep' do
                                         locality: 'locality2',
                                         region: 'region2',
                                         postal_code: 'postal_code2',
-                                        office_type: 'district')
+                                        office_type: 'district',
+                                        phone: '123-456-7890')
 
         expect(@rep1.office_locations.count).to eq(2)
       end
@@ -136,7 +138,8 @@ describe 'Rep' do
                                         locality: 'locality2',
                                         region: 'region2',
                                         postal_code: 'postal_code2',
-                                        office_type: 'district')
+                                        office_type: 'district',
+                                        phone: '123-456-7890')
 
         expect(@rep1.office_locations.count).to eq(1)
         expect(@rep1.office_locations).to include(@office1)

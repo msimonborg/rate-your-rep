@@ -6,7 +6,8 @@ describe 'OfficeLocation' do
                                      locality: 'locality1',
                                      region: 'region1',
                                      postal_code: 'postal_code1',
-                                     office_type: 'district')
+                                     office_type: 'district',
+                                     phone: '123-456-7890')
 
     @rep1 = Rep.create(bioguide_id: 'A000DS32',
                        official_full: 'Madam Senator',
@@ -28,13 +29,15 @@ describe 'OfficeLocation' do
       expect(office2.locality).to eq('locality1')
       expect(office2.region).to eq('region1')
       expect(office2.postal_code).to eq('postal_code1')
+      expect(office2.phone).to eq('123-456-7890')
     end
 
     it 'requires bioguide_id to persist' do
       office2 = OfficeLocation.create(bioguide_id: '',
                               locality: 'locality2',
                               region: 'region2',
-                              postal_code: 'postal_code2')
+                              postal_code: 'postal_code2',
+                              phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -44,7 +47,8 @@ describe 'OfficeLocation' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
                               locality: '',
                               region: 'region2',
-                              postal_code: 'postal_code2')
+                              postal_code: 'postal_code2',
+                              phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -54,7 +58,8 @@ describe 'OfficeLocation' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
                               locality: 'locality2',
                               region: '',
-                              postal_code: 'postal_code2')
+                              postal_code: 'postal_code2',
+                              phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -64,7 +69,19 @@ describe 'OfficeLocation' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
                               locality: 'locality2',
                               region: 'region2',
-                              postal_code: '')
+                              postal_code: '',
+                              phone: '123-456-7890')
+
+      expect(office2.id).to eq(nil)
+      expect(OfficeLocation.count).to eq(1)
+    end
+
+    it 'requires phone to persist' do
+      office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
+                              locality: 'locality2',
+                              region: 'region2',
+                              postal_code: 'postal_code2',
+                              phone: '')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)

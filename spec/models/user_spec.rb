@@ -84,7 +84,8 @@ describe 'User' do
                                        locality: 'locality1',
                                        region: 'region1',
                                        postal_code: 'postal_code1',
-                                       office_type: 'district')
+                                       office_type: 'district',
+                                       phone: '123-456-7890')
 
       @call1 = Call.create(bioguide_id: @rep1.bioguide_id,
                            comments: 'very satisfied',
