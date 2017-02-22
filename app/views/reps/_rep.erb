@@ -22,7 +22,7 @@
                 by <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
                 </p>
               <% end %>
-              <a href="/calls/new/<%= office.id %>"><button type="submit" class="btn btn-primary btn-block">record a call</button></a>
+              <a href="/calls/new/<%= office.id %>"><button type="submit" class="btn btn-primary btn-block">make the call</button></a>
             </div>
           </div>
         <% end %>
@@ -94,6 +94,6 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <a href="#" class="office-details-modal-button btn btn-primary btn-block" data-toggle="modal" data-target="#rep<%= rep.id %>-office-details-modal">view office details</a>
+    <a href="#" class="office-details-modal-button btn btn-primary btn-block" data-toggle="modal" data-target="#rep<%= rep.id %>-office-details-modal">select an office</a>
   </div>
 </div>
