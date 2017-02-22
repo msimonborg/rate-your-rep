@@ -6,6 +6,9 @@
       <li role="presentation"><a href="/calls/recent">Recent</a></li>
     </ul>
   </div>
+  <div class="col-sm-8 col-sm-offset-2" style="margin-top:1em;">
+    <a href="/reps/select" class="btn btn-primary btn-block">New Call</a>
+  </div>
   <% @calls.each do |call| %>
     <%= partial :'calls/_call', locals: { call: call } %>
   <% end %>
