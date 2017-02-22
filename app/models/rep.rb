@@ -26,5 +26,5 @@ class Rep < ActiveRecord::Base
     group("reps.id").
     order("calls_rating DESC") }
 
-  attr_accessor :url, :photo, :twitter, :facebook, :youtube, :instagram, :state, :district
+  attr_accessor :url, :photo, :twitter, :facebook, :youtube, :instagram, :state, :district, :vcard
 end

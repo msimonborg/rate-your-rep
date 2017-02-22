@@ -204,6 +204,11 @@ div.call-stats a {
   margin-right: auto;
 }
 
+.vcard-download {
+  margin: auto;
+  font-size: 1.8em;
+}
+
 /**** Reps Select ****/
 .reps-select {
   margin-top: 4em;

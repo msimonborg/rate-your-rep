@@ -74,6 +74,7 @@ module APIFindable
       self.instagram = rep['instagram']
       self.state     = rep['state']['name']
       self.district  = rep['district']['code'] if rep['district']
+      self.vcard = rep['office_locations'].find { |o| o['office_type'] == 'capitol' }['v_card_link']
     end
   end
 end

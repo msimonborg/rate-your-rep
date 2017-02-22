@@ -18,10 +18,13 @@
           <% @rep.calls.average('rating').to_i.round.times do %>
             <i class="fa fa-star" aria-hidden="true"></i>
           <% end %>
-        </small>
       <% else %>
-        needs a call. <small>Why don't you be the first to oblige?</small>
+        needs a call. <small>Why don't you be the first to oblige?
       <% end %>
+      <% if @rep.vcard %>
+        <a href="<%= @rep.vcard %>" class="btn btn-default">download contact</a>
+      <% end %>
+    </small>
     </h2>
   </div>
   <div class="col-sm-6">
