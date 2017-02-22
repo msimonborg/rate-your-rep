@@ -12,7 +12,12 @@
           <i class="fa fa-star" aria-hidden="true"></i>
         <% end %>
         <%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %>
-        by <a href="/users/<%= call.user.slug %>">@<%= call.user.slug %></a>
+        by
+        <% if call.user %>
+          <a href="/users/<%= call.user.slug %>">@<%= call.user.slug %></a>
+        <% else %>
+          anonymous
+        <% end %>
         </p>
         <h4><%= call.comments.blank? ? 'This call was not reviewed' : call.comments %></h4>
         <% if call.got_through %>
@@ -22,7 +27,7 @@
           <h5>The line was busy</h5>
         <% end %>
         <% if call.voice_mail %>
-          <h5><%= call.user.username %> left a voicemail</h5>
+          <h5>The caller left a voicemail</h5>
         <% end %>
         <% if call.mailbox_full %>
           <h5>The mailbox was full</h5>
@@ -49,7 +54,12 @@
       <h3><a href="tel:<%= call.office_location.phone %>"><%= call.office_location.phone %></a> <%= call.office_location.locality %> Office</h3>
     </div>
     <div class="col-sm-6">
-      <h4><%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %> by <a href="/users/<%= call.user.slug %>"><%= logged_in? && call.user == current_user ? 'you' : "@#{call.user.slug}" %></a></h4>
+      <h4><%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %> by
+        <% if call.user %>
+          <a href="/users/<%= call.user.slug %>"><%= logged_in? && call.user == current_user ? 'you' : "@#{call.user.slug}" %></a></h4>
+        <% else %>
+          anonymous
+        <% end %>
     </div>
   </div>
   <div class="col-sm-4 call-rating">

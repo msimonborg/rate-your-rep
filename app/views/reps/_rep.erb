@@ -19,7 +19,12 @@
                   <%= office.calls.count %> calls, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
                 </p>
                 <p>Last call made <%= office.calls.last_call.time %>
-                by <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
+                by
+                <% if last_call.user %>
+                  <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
+                <% else %>
+                  anonymous.
+                <% end %>
                 </p>
               <% end %>
               <a href="/calls/new/<%= office.id %>"><button type="submit" class="btn btn-primary btn-block">make the call</button></a>
@@ -90,7 +95,13 @@
     <% if rep.calls.blank? %>
       <p>No calls yet, you could be the first!</p>
     <% else %>
-      <p>Last call made <%= last_call.time %> by <a href="/users/<%= last_call.user.slug %>">@<%= last_call.user.slug %></a> and was rated <%= last_call.rating %> <%= last_call.rating == 1 ? 'star' : 'stars' %></p>
+      <p>Last call made <%= last_call.time %> by
+        <% if last_call.user %>
+          <a href="/users/<%= last_call.user.slug %>">@<%= last_call.user.slug %>
+        <% else %>
+          anonymous
+        <% end %>
+        </a> and was rated <%= last_call.rating %> <%= last_call.rating == 1 ? 'star' : 'stars' %></p>
     <% end %>
   </div>
   <div class="col-sm-4">
