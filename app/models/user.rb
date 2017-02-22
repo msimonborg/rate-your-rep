@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
                               on: :create
   before_create :add_slug
 
+  scope :most_calls, ->{ select("users.*, count(calls.id) AS calls_count").
+    joins(:calls).
+    group("users.id").
+    order("calls_count DESC") }
+
   def add_slug
     self.slug = username.
                 split(' ').

@@ -4,6 +4,19 @@ class RepsController < ApplicationController
     erb :'reps/index'
   end
 
+  post '/reps' do
+    if params[:bioguide_id]
+      redirect "/reps/#{params[:bioguide_id]}"
+    else
+      redirect '/reps'
+    end
+  end
+
+  get '/reps/select' do
+    @reps = Rep.order('family_name ASC')
+    erb :'reps/select'
+  end
+
   get '/reps/most-called' do
     @reps = Rep.most_called
     erb :'reps/most_called'

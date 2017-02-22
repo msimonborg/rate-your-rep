@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride
 
+use CallsController
 use RepsController
 use UsersController
 run ApplicationController

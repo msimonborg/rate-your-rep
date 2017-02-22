@@ -1,0 +1,12 @@
+<div class="index users-index container">
+  <div class="index-title col-sm-12">
+    <h1>Leader Board</h1>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="/users">All Users</a></li>
+      <li role="presentation" class="active"><a href="#">Leader Board</a></li>
+    </ul>
+  </div>
+  <% @users.each do |user| %>
+    <%= partial :'users/_user', locals: { user: user } %>
+  <% end %>
+</div>

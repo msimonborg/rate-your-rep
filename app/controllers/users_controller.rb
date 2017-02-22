@@ -25,6 +25,16 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users' do
+    @users = User.all
+    erb :'users/index'
+  end
+
+  get '/users/leaderboard' do
+    @users = User.most_calls.limit(25)
+    erb :'users/leaderboard'
+  end
+
   get '/users/:slug' do
     @user = User.where(slug: params[:slug]).includes(:calls).take
     erb :'users/show'
