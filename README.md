@@ -15,6 +15,8 @@ rake db:migrate SINATRA_ENV=test
 rake spec
 bundle exec shotgun
 ```
+#Data
+Rep data is pulled from the [Phone Your Rep API](https://github.com/phoneyourrep/phone-your-rep-api). Data on reps and their offices that is assumed not to change is persisted to the database after the first time it is retrieved so it will be avialable in the index and for statistics. Every user request for location search and rep detail sends a new request to the API, and the local records are updated. Data that is not persisted and is only available from the API includes rep social media accounts, role in congress, district and state. This list of persisted data may grow in future updates.
 #Contributing
 Contributions are always welcome. Please check to see if there are any open issues first. Commit to a feature branch on your own fork and then submit your changes in a pull request.
 #License
