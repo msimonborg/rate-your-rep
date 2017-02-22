@@ -10,6 +10,13 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  configure :production do
+    set :database, { adapter: 'postgresql',
+                     encoding: 'unicode',
+                     database: 'track_your_rep',
+                     pool: 2 }
+  end
+
   use Rack::Flash
 
   get '/' do
