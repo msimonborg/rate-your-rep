@@ -2,12 +2,12 @@
   <div class="container">
     <% if logged_in? %>
       <h1>Welcome back, <%= current_user.username %></h1>
-      <p>We've got a lot of reps to track.</p>
+      <p>We've got a lot of reps to rate.</p>
       <p><a class="btn btn-primary btn-lg" href="/users/<%= current_user.slug %>" role="button">Let's Get Started!</a></p>
     <% else %>
       <h1>Don't let them hide.</h1>
       <p>Rate your representation. Make civics great again!</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#signup-modal">Sign Up to Track Your Rep</a></p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#signup-modal">Sign Up to Rate Your Rep</a></p>
     <% end %>
     <p><a id="about-link" href="#about">Learn more</a></p>
   </div>
@@ -21,7 +21,7 @@
   <p class="headline">Calling is an effective way to participate in our democracy.</p>
   <p class="paragraph">As more people catch on to this idea and make more calls, some elected officials will try to hide behind high call volumes and avoid picking up the phones. We need to hold them accountable.</p>
   <p class="headline">It's like Yelp for Congress.</p>
-  <p class="paragraph">Track Your Rep lets you record your history and success rates for every call you make to Congress. You can rate and review your reps based on your satisfaction with the experience, view stats for each member, and share the results on social media.</p>
+  <p class="paragraph">Rate Your Rep lets you record your history and success rates for every call you make to Congress. You can rate and review your reps based on your satisfaction with the experience, view stats for each member, and share the results on social media.</p>
   <p class="headline">Let's remind them that they work for us.</p>
   <p class="paragraph">A lot of members of Congress seem more interested in doing what's "good for business". So let's treat them like a business, except we're the owners, and it's time for their performance review.</p>
 </div>

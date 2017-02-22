@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :session_secret, "track_your_rep_secret_sessions"
+    set :session_secret, "rate_your_rep_secret_sessions"
     set :public_folder, 'public'
     set :views, 'app/views'
   end
@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   configure :production do
     set :database, { adapter: 'postgresql',
                      encoding: 'unicode',
-                     database: 'track_your_rep',
+                     database: 'rate_your_rep',
                      pool: 2 }
   end
 
