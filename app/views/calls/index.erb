@@ -1,0 +1,12 @@
+<div class="index calls-index container">
+  <div class="index-title col-sm-12">
+    <h1>All Calls</h1>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">All</a></li>
+      <li role="presentation"><a href="/calls/recent">Recent</a></li>
+    </ul>
+  </div>
+  <% @calls.each do |call| %>
+    <%= partial :'calls/_call', locals: { call: call } %>
+  <% end %>
+</div>

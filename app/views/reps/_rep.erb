@@ -90,7 +90,7 @@
     <% if rep.calls.blank? %>
       <p>No calls yet, you could be the first!</p>
     <% else %>
-      <p>Last call made <%= last_call.time %> by <a href="/users/<%= last_call.user.slug %>">@<%= last_call.user.slug %></a> and was rated <%= last_call.rating %> stars</p>
+      <p>Last call made <%= last_call.time %> by <a href="/users/<%= last_call.user.slug %>">@<%= last_call.user.slug %></a> and was rated <%= last_call.rating %> <%= last_call.rating == 1 ? 'star' : 'stars' %></p>
     <% end %>
   </div>
   <div class="col-sm-4">
