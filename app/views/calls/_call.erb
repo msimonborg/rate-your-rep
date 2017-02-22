@@ -43,7 +43,7 @@
       <h3><%= call.rep.party_identification %></h3>
     </div>
     <div class="col-sm-6">
-      <h3><%= call.rep.official_full %></h3>
+      <h3><a href="/reps/<%= call.rep.bioguide_id %>"><%= call.rep.official_full %></a></h3>
     </div>
     <div class="col-sm-6">
       <h3><a href="tel:<%= call.office_location.phone %>"><%= call.office_location.phone %></a> <%= call.office_location.locality %> Office</h3>

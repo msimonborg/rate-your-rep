@@ -24,6 +24,19 @@
       <% end %>
     </h2>
   </div>
+  <div class="col-sm-6">
     <img class="rep-photo" src="<%= @rep.photo %>" alt="<%= @rep.official_full %> photo portrait">
+  </div>
+  <div class="col-sm-6">
+    <% if @rep.calls.blank? %>
+      <h1>No stats available.</h1>
+    <% else %>
+      <h1>Call stats</h1>
+      <h3><%= (@rep.calls.where(got_through: true).count.to_f / @rep.calls.count * 100).round(1) %>% were answered by a human.</h3>
+      <h3><%= (@rep.calls.where(busy: true).count.to_f / @rep.calls.count * 100).round(1) %>% got a busy signal.</h3>
+      <h3><%= (@rep.calls.where(voice_mail: true).count.to_f / @rep.calls.count * 100).round(1) %>% went to voicemail.</h3>
+      <h3><%= (@rep.calls.where(mailbox_full: true).count.to_f / @rep.calls.count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
+    <% end %>
+  </div>
   <%= partial :'reps/_rep', locals: { rep: @rep } %>
 </div>
