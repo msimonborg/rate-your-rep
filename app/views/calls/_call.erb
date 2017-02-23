@@ -18,6 +18,9 @@
         <% else %>
           anonymous
         <% end %>
+        <% if current_user == call.user %>
+          <a href="#" role="button" class="edit-call-modal-button btn btn-default btn-xs" data-dismiss="modal" data-toggle="modal" data-target="#call<%= call.id %>-edit-modal">edit review</a>
+        <% end %>
         </p>
         <h4><%= call.comments.blank? ? 'This call was not reviewed' : call.comments %></h4>
         <% if call.got_through %>
@@ -41,7 +44,104 @@
 </div>
 <!-- End Call Details Modal -->
 
-<div class="tyr-card call-card col-sm-10 col-sm-offset-1">
+<% if current_user == call.user # Don't render the edit modal if the call isn't the user's %>
+<!-- Edit Call Modal -->
+  <div class="modal fade" id="call<%= call.id %>-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title">Edit Review</h2>
+        </div>
+        <div class="modal-body">
+          <form class="new-call-form form-horizontal" action="/calls" method="post">
+            <input type="hidden" name="_method" value="patch">
+            <input type="hidden" name="id" value="<%= call.id %>">
+            <input type="hidden" name="path" value="<%= request.fullpath %>">
+            <select class="form-control col-sm-12" name="rating">
+              <% case call.rating
+                 when 5 %>
+                <option value="5" selected="selected">5 (very satisfied)</option>
+                <option value="4">4 </option>
+                <option value="3">3 </option>
+                <option value="2">2 </option>
+                <option value="1">1 (not at all satisfied)</option>
+              <% when 4 %>
+                <option value="5">5 (very satisfied)</option>
+                <option value="4" selected="selected">4 </option>
+                <option value="3">3 </option>
+                <option value="2">2 </option>
+                <option value="1">1 (not at all satisfied)</option>
+              <% when 3 %>
+                <option value="5">5 (very satisfied)</option>
+                <option value="4">4 </option>
+                <option value="3" selected="selected">3 </option>
+                <option value="2">2 </option>
+                <option value="1">1 (not at all satisfied)</option>
+              <% when 2 %>
+                <option value="5">5 (very satisfied)</option>
+                <option value="4">4 </option>
+                <option value="3">3 </option>
+                <option value="2" selected="selected">2 </option>
+                <option value="1">1 (not at all satisfied)</option>
+              <% when 1 %>
+                <option value="5">5 (very satisfied)</option>
+                <option value="4">4 </option>
+                <option value="3">3 </option>
+                <option value="2">2 </option>
+                <option value="1" selected="selected">1 (not at all satisfied)</option>
+              <% else %>
+                <option value="5">5 (very satisfied)</option>
+                <option value="4">4 </option>
+                <option value="3">3 </option>
+                <option value="2">2 </option>
+                <option value="1">1 (not at all satisfied)</option>
+              <% end %>
+            </select>
+            <div class="form-group">
+              <div class="col-sm-3">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="true" name="got_through" <%= 'checked' if call.got_through %>>I talked to a human
+                </label>
+              </div>
+              <div class="col-sm-3">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="true" name="busy" <%= 'checked' if call.busy %>>The line was busy
+                </label>
+              </div>
+              <div class="col-sm-3">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="true" name="voice_mail" <%= 'checked' if call.voice_mail %>>I left a voicemail
+                </label>
+              </div>
+              <div class="col-sm-3">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="true" name="mailbox_full" <%= 'checked' if call.mailbox_full %>>The mailbox was full
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8 col-sm-offset-2">
+                <textarea type="text" class="form-control" name="comments" maxlength="140"><%= call.comments %></textarea>
+              </div>
+            </div>
+            <div class="form-group tyr-modal-form-button">
+              <div class="col-sm-8 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End Edit Call Modal -->
+<% end %>
+
+<div id="call<%= call.id %>-card"class="tyr-card call-card col-sm-10 col-sm-offset-1">
   <div class="col-sm-8">
     <div class="col-sm-6">
       <h3><%= call.rep.honorific_prefix %></h3>
@@ -56,7 +156,7 @@
     <div class="col-sm-6">
       <h4><%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %> by
         <% if call.user %>
-          <a href="/users/<%= call.user.slug %>"><%= logged_in? && call.user == current_user ? 'you' : "@#{call.user.slug}" %></a></h4>
+          <a href="/users/<%= call.user.slug %>"><%= call.user == current_user ? 'you' : "@#{call.user.slug}" %></a></h4>
         <% else %>
           anonymous
         <% end %>

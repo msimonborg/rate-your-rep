@@ -24,6 +24,30 @@ class CallsController < ApplicationController
     end
   end
 
+  patch '/calls' do
+    call = Call.find params[:id]
+    if current_user == call.user
+      call.rating       = params[:rating]
+      call.got_through  = params[:got_through]
+      call.busy         = params[:busy]
+      call.voice_mail   = params[:voice_mail]
+      call.mailbox_full = params[:mailbox_full]
+      call.comments     = params[:comments]
+
+      if call.save
+        call_path = "#{params[:path]}#call#{call.id}-card"
+        call_link = "<a href='#{call_path}'>here</a>"
+        flash[:message] = ["Your review was successfully updated. View it #{call_link}."]
+      else
+        flash[:message] = call.errors.full_messages
+      end
+      redirect params[:path] || "/users/#{current_user.slug}"
+
+    else
+      redirect '/login'
+    end
+  end
+
   get '/calls/new/:office_id' do
     @office = OfficeLocation.find params[:office_id]
     erb :'calls/new'
