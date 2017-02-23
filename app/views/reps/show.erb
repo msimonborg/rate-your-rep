@@ -42,4 +42,12 @@
     <% end %>
   </div>
   <%= partial :'reps/_rep', locals: { rep: @rep } %>
+  <div class="calls col-sm-12">
+    <h1>Call History</h1>
+    <div class="call-list col-sm-12">
+      <% @rep.calls.order('created_at DESC').each do |call| %>
+        <%= partial :'calls/_call', locals: { call: call } %>
+      <% end %>
+    </div>
+  </div>
 </div>
