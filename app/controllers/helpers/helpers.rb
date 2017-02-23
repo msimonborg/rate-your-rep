@@ -16,13 +16,13 @@ module Helpers
     "#{count} #{inner_string}#{count == 1 ? singular : plural}"
   end
 
-  def display_stars(object)
+  def display_stars(count)
     stars = []
-    object.calls.stars.times do
+    count.times do
       stars << "<i class='fa fa-star' aria-hidden='true'></i>"
     end
 
-    (5 - object.calls.stars).times do
+    (5 - count).times do
       stars << "<i class='fa fa-star-o' aria-hidden='true'></i>"
     end
 

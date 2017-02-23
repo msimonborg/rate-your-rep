@@ -8,9 +8,7 @@
       </div>
       <div class="modal-body">
         <p>
-        <% call.rating.times do %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        <% end %>
+        <%= display_stars call.rating %>
         <%= call.created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P") %>
         by
         <% if call.user %>
@@ -163,11 +161,7 @@
     </div>
   </div>
   <div class="col-sm-4 call-rating">
-    <p>
-      <% call.rating.times do %>
-        <i class="fa fa-star" aria-hidden="true"></i>
-      <% end %>
-    </p>
+    <p><%= display_stars call.rating %></p>
   </div>
   <div class="col-sm-4">
     <a href="#" class="call-details-modal-button btn btn-default" data-toggle="modal" data-target="#call<%= call.id %>-details-modal">call details</a>

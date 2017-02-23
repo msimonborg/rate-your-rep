@@ -15,7 +15,7 @@
           'should work on their resume'
         end %>
         <small>
-          <%= display_stars(@rep) %>
+          <%= display_stars @rep.calls.stars %>
       <% else %>
         needs a call. <small>Why don't you be the first to oblige?
       <% end %>
