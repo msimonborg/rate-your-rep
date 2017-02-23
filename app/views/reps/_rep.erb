@@ -9,6 +9,7 @@
       </div>
       <div class="modal-body">
         <% rep.office_locations.each do |office| %>
+          <% last_office_call =  office.calls.last_call %>
           <div class="panel panel-default">
             <div class="panel-body">
               <h4><%= office.locality %>, <%= office.region %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
@@ -20,7 +21,7 @@
                 </p>
                 <p>Last call made <%= office.calls.last_call.time %>
                 by
-                <% if last_call.user %>
+                <% if last_office_call.user %>
                   <a href="/users/<%= office.calls.last_call.user.slug %>">@<%= office.calls.last_call.user.slug %></a>
                 <% else %>
                   anonymous.
