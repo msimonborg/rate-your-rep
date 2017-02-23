@@ -10,4 +10,9 @@ module Helpers
   def partial(page, options={})
     erb page, options.merge!(layout: false)
   end
+
+  def pluralize(count, singular, plural, inner_string: nil)
+    inner_string = inner_string + ' ' if inner_string
+    "#{count} #{inner_string}#{count == 1 ? singular : plural}"
+  end
 end

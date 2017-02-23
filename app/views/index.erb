@@ -14,7 +14,7 @@
 </div>
 <div id="calls-to-date" class="container">
   <div class="col-sm-12">
-    <h1><%= Call.count %> calls made to date.</h1>
+    <h1><%= pluralize Call.count, 'call', 'calls' %> made to date.</h1>
   </div>
 </div>
 <div id="about" class="container">

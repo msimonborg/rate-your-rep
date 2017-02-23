@@ -4,7 +4,7 @@
     <h3><%= user.username %></h3>
   </div>
   <div class="col-sm-4">
-    <p><%= user.calls.count %> calls</p>
+    <p><%= pluralize user.calls.count, 'call', 'calls' %></p>
   </div>
   <div class="col-sm-4">
     <% if user.calls.blank? %>
@@ -15,14 +15,13 @@
   </div>
   <div class="col-sm-4">
     <% distinct_offices = user.office_locations.distinct.count %>
-    <p><%= user.username %> has called <%= distinct_offices %> distinct
-    <%= distinct_offices == 1 ? 'office.' : 'offices.' %></p>
+    <p><%= user.username %> has called <%= pluralize distinct_offices, 'office', 'offices', inner_string: 'distinct' %></p>
   </div>
   <div class="col-sm-8">
     <% if user.calls.blank? %>
       <p><%= user.username %> is still waiting to make their first call.</p>
     <% else %>
-      <p>Last call made <%= last_call.time %> to <a href="/reps/<%= last_call.rep.bioguide_id %>"><%= last_call.rep.official_full %></a> and was rated <%= last_call.rating %> stars</p>
+      <p>Last call made <%= last_call.time %> to <a href="/reps/<%= last_call.rep.bioguide_id %>"><%= last_call.rep.official_full %></a> and was rated <%= pluralize last_call.rating, 'star', 'stars' %></p>
     <% end %>
   </div>
   <div class="col-sm-4">

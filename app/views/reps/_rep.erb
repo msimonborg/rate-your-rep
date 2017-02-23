@@ -17,7 +17,7 @@
                 <p>No calls made to this office yet.</p>
               <% else %>
                 <p>
-                  <%= office.calls.count %> calls, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+                  <%= pluralize office.calls.count, 'call', 'calls' %>, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
                 </p>
                 <p>Last call made <%= office.calls.last_call.time %>
                 by
@@ -80,7 +80,7 @@
     <% end %></h3>
   </div>
   <div class="col-sm-4">
-    <p><%= rep.calls.count %> calls</p>
+    <p><%= pluralize rep.calls.count, 'call', 'calls' %></p>
   </div>
   <div class="col-sm-4">
     <% if rep.calls.blank? %>
@@ -90,7 +90,7 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <p><%= rep.given_name %> has <%= rep.office_locations.distinct.count %> offices you can call.</p>
+    <p><%= rep.given_name %> has <%= pluralize rep.office_locations.distinct.count, 'office', 'offices' %> you can call.</p>
   </div>
   <div class="col-sm-8">
     <% if rep.calls.blank? %>
@@ -102,7 +102,7 @@
         <% else %>
           anonymous
         <% end %>
-        </a> and was rated <%= last_call.rating %> <%= last_call.rating == 1 ? 'star' : 'stars' %></p>
+      </a> and was rated <%= pluralize last_call.rating, 'star', 'stars' %></p>
     <% end %>
   </div>
   <div class="col-sm-4">
