@@ -17,7 +17,8 @@
                 <p>No calls made to this office yet.</p>
               <% else %>
                 <p>
-                  <%= pluralize office.calls.count, 'call', 'calls' %>, average rating <% office.calls.average('rating').to_i.round.times do %><i class="fa fa-star" aria-hidden="true"></i><% end %>
+                  <%= pluralize office.calls.count, 'call', 'calls' %>, average rating
+                  <%= display_stars(office) %>
                 </p>
                 <p>Last call made <%= office.calls.last_call.time %>
                 by

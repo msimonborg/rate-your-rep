@@ -15,4 +15,17 @@ module Helpers
     inner_string = inner_string + ' ' if inner_string
     "#{count} #{inner_string}#{count == 1 ? singular : plural}"
   end
+
+  def display_stars(object)
+    stars = []
+    object.calls.stars.times do
+      stars << "<i class='fa fa-star' aria-hidden='true'></i>"
+    end
+
+    (5 - object.calls.stars).times do
+      stars << "<i class='fa fa-star-o' aria-hidden='true'></i>"
+    end
+
+    stars.join(' ')
+  end
 end

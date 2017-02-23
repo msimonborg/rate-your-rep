@@ -2,7 +2,7 @@
   <div class="page-header">
     <h2><%= @rep.given_name %>
       <% unless @rep.calls.blank? %>
-        <%= case @rep.calls.average('rating').to_i.round
+        <%= case @rep.calls.stars
         when 5
           'is outstanding and deserves to hear it'
         when 4
@@ -15,9 +15,7 @@
           'should work on their resume'
         end %>
         <small>
-          <% @rep.calls.average('rating').to_i.round.times do %>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          <% end %>
+          <%= display_stars(@rep) %>
       <% else %>
         needs a call. <small>Why don't you be the first to oblige?
       <% end %>
