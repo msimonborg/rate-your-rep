@@ -47,7 +47,7 @@ module APIFindable
                                        postal_code: office['zip'],
                                        office_type: office['office_type']
         db_ol.update(phone: office['phone']) if db_ol
-        db_ol = create_ol_from_api(office) unless db_ol
+        create_ol_from_api(office) unless db_ol
       end
     end
 

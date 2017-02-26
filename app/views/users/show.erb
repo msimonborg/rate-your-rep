@@ -37,7 +37,7 @@
     <div class="calls col-sm-12">
       <h1>Call History</h1>
       <div class="call-list col-sm-12">
-        <% @user.calls.order('created_at DESC').each do |call| %>
+        <% @user.calls.order('created_at DESC').includes(:rep, :office_location).each do |call| %>
           <%= partial :'calls/_call', locals: { call: call } %>
         <% end %>
       </div>
