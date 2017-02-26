@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
                 split(' ').
                 join('-').
                 gsub(/(\.|!|\?|\(|\)|&|%|@)/, '').
-                gsub('$', 's').
+                tr('$', 's').
                 downcase
   end
 end
