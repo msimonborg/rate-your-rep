@@ -1,6 +1,6 @@
 <div class="profile-page container">
   <div class="col-sm-6 user-greeting">
-    <% if logged_in? && @user == current_user %>
+    <% if current_user == @user %>
       <h1>
         Hello, <%= @user.username %>
       </h1>
@@ -15,7 +15,7 @@
   </div>
   <div class="call-stats col-sm-6">
     <% if @user.calls.blank? %>
-      <% if logged_in? && @user == current_user %>
+      <% if current_user == @user %>
         <h3>Today's a great day to make your first call.</h3>
         <h3>You'll be on the leader boards before you know it.</h3>
         <h3>

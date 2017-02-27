@@ -21,7 +21,7 @@
     <% if user.calls.blank? %>
       <p><%= user.username %> is still waiting to make their first call.</p>
     <% else %>
-      <p>Last call made <%= last_call.time %> to <a href="/reps/<%= last_call.rep.bioguide_id %>"><%= last_call.rep.official_full %></a> and was rated <%= pluralize last_call.rating, 'star', 'stars' %></p>
+      <p>Last call made <%= last_call.time %> to <a href="/reps/<%= last_call.rep.bioguide_id %>"><%= last_call.rep_name %></a> and was rated <%= pluralize last_call.rating, 'star', 'stars' %></p>
     <% end %>
   </div>
   <div class="col-sm-4">

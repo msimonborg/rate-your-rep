@@ -13,7 +13,7 @@ class CallsController < ApplicationController
     if logged_in?
       @call = Call.new params
       if @call.save
-        flash[:message] = ["Your call to #{@call.rep.official_full} was saved successfully!"]
+        flash[:message] = ["Your call to #{@call.rep_name} was saved successfully!"]
         redirect '/calls/recent'
       else
         flash[:message] = @call.errors.full_messages

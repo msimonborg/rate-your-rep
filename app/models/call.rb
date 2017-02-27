@@ -14,4 +14,32 @@ class Call < ActiveRecord::Base
   def time
     created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P")
   end
+
+  def rep_party
+    rep.party_identification
+  end
+
+  def rep_title
+    rep.honorific_prefix
+  end
+
+  def rep_name
+    rep.official_full
+  end
+
+  def phone_number
+    office_location.phone
+  end
+
+  def office_locality
+    "#{office_location.locality} Office"
+  end
+
+  def no_comments?
+    comments.blank?
+  end
+
+  def user_slug
+    user.slug
+  end
 end
