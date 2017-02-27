@@ -34,4 +34,20 @@ module Callable
   def calls_stars
     calls.stars
   end
+
+  def percent_of_calls_connected
+    (calls.that_connected.count.to_f / calls_count * 100).round(1)
+  end
+
+  def percent_of_calls_busy
+    (calls.that_were_busy.count.to_f / calls_count * 100).round(1)
+  end
+
+  def percent_of_calls_to_voice_mail
+    (calls.that_went_to_voice_mail.count.to_f / calls_count * 100).round(1)
+  end
+
+  def percent_of_calls_that_hit_a_full_mailbox
+    (calls.that_hit_a_full_mailbox.count.to_f / calls_count * 100).round(1)
+  end
 end

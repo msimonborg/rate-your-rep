@@ -33,10 +33,10 @@
       <h1>No stats available.</h1>
     <% else %>
       <h1>Call stats</h1>
-      <h3><%= (@rep.calls.that_connected.count.to_f / @rep.calls_count * 100).round(1) %>% were answered by a human.</h3>
-      <h3><%= (@rep.calls.that_were_busy.count.to_f / @rep.calls_count * 100).round(1) %>% got a busy signal.</h3>
-      <h3><%= (@rep.calls.that_went_to_voice_mail.count.to_f / @rep.calls_count * 100).round(1) %>% went to voicemail.</h3>
-      <h3><%= (@rep.calls.that_hit_a_full_mailbox.count.to_f / @rep.calls_count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
+      <h3><%= @rep.percent_of_calls_connected %>% were answered by a human.</h3>
+      <h3><%= @rep.percent_of_calls_busy %>% got a busy signal.</h3>
+      <h3><%= @rep.percent_of_calls_to_voice_mail %>% went to voicemail.</h3>
+      <h3><%= @rep.percent_of_calls_that_hit_a_full_mailbox %>% were not delivered because the mailbox was full.</h3>
     <% end %>
   </div>
   <%= partial :'reps/_rep', locals: { rep: @rep } %>
