@@ -16,6 +16,15 @@ class Call < ActiveRecord::Base
   scope :that_went_to_voice_mail, ->{ where(voice_mail: true) }
   scope :that_hit_a_full_mailbox, ->{ where(mailbox_full: true) }
 
+  def user_update(params)
+    # When a user updates, reset boolean attributes to false except those
+    # that are true in the params hash.
+    update({ got_through:  false,
+             busy:         false,
+             voice_mail:   false,
+             mailbox_full: false }.merge!(params))
+  end
+
   def time
     created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P")
   end
