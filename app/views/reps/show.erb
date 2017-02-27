@@ -1,7 +1,7 @@
 <div class="container">
   <div class="page-header">
     <h2><%= @rep.given_name %>
-      <% unless @rep.calls.blank? %>
+      <% unless @rep.no_calls? %>
         <%= case @rep.calls.stars
         when 5
           'is outstanding and deserves to hear it'
@@ -29,21 +29,21 @@
     <img class="rep-photo" src="<%= @rep.photo %>" alt="<%= @rep.official_full %> photo portrait">
   </div>
   <div class="col-sm-6">
-    <% if @rep.calls.blank? %>
+    <% if @rep.no_calls? %>
       <h1>No stats available.</h1>
     <% else %>
       <h1>Call stats</h1>
-      <h3><%= (@rep.calls.where(got_through: true).count.to_f / @rep.calls.count * 100).round(1) %>% were answered by a human.</h3>
-      <h3><%= (@rep.calls.where(busy: true).count.to_f / @rep.calls.count * 100).round(1) %>% got a busy signal.</h3>
-      <h3><%= (@rep.calls.where(voice_mail: true).count.to_f / @rep.calls.count * 100).round(1) %>% went to voicemail.</h3>
-      <h3><%= (@rep.calls.where(mailbox_full: true).count.to_f / @rep.calls.count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
+      <h3><%= (@rep.calls.where(got_through: true).count.to_f / @rep.calls_count * 100).round(1) %>% were answered by a human.</h3>
+      <h3><%= (@rep.calls.where(busy: true).count.to_f / @rep.calls_count * 100).round(1) %>% got a busy signal.</h3>
+      <h3><%= (@rep.calls.where(voice_mail: true).count.to_f / @rep.calls_count * 100).round(1) %>% went to voicemail.</h3>
+      <h3><%= (@rep.calls.where(mailbox_full: true).count.to_f / @rep.calls_count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
     <% end %>
   </div>
   <%= partial :'reps/_rep', locals: { rep: @rep } %>
   <div class="calls col-sm-12">
     <h1>Call History</h1>
     <div class="call-list col-sm-12">
-      <% @rep.calls.order('created_at DESC').each do |call| %>
+      <% @rep.time_sorted_calls.each do |call| %>
         <%= partial :'calls/_call', locals: { call: call } %>
       <% end %>
     </div>

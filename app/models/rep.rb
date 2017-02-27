@@ -1,6 +1,7 @@
 class Rep < ActiveRecord::Base
   extend APIFindable::ClassMethods
   include APIFindable::InstanceMethods
+  include Callable
 
   has_many :calls, foreign_key: :bioguide_id, primary_key: :bioguide_id
   has_many :users, through: :calls

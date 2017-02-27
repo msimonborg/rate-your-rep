@@ -1,4 +1,4 @@
-<% last_call = rep.calls.last_call %>
+<% last_call = rep.last_call %>
 <!-- Office Details Modal -->
 <div class="modal fade" id="rep<%= rep.id %>-office-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -81,20 +81,20 @@
     <% end %></h3>
   </div>
   <div class="col-sm-4">
-    <p><%= pluralize rep.calls.count, 'call', 'calls' %></p>
+    <p><%= pluralize rep.calls_count, 'call', 'calls' %></p>
   </div>
   <div class="col-sm-4">
-    <% if rep.calls.blank? %>
+    <% if rep.no_calls? %>
       <p>No rating information available.</p>
     <% else %>
-      <p><%= rep.calls.average('rating').round(1) %> average rating.</p>
+      <p><%= rep.average_call_rating %> average rating.</p>
     <% end %>
   </div>
   <div class="col-sm-4">
     <p><%= rep.given_name %> has <%= pluralize rep.office_locations.distinct.count, 'office', 'offices' %> you can call.</p>
   </div>
   <div class="col-sm-8">
-    <% if rep.calls.blank? %>
+    <% if rep.no_calls? %>
       <p>No calls yet, you could be the first!</p>
     <% else %>
       <p>Last call made <%= last_call.time %> by

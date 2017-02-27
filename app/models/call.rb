@@ -28,6 +28,10 @@ class Call < ActiveRecord::Base
     rep.official_full
   end
 
+  def rep_bioguide_id
+    bioguide_id
+  end
+
   def phone_number
     office_location.phone
   end

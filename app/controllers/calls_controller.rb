@@ -1,11 +1,11 @@
 class CallsController < ApplicationController
   get '/calls' do
-    @calls = Call.order('created_at DESC')
+    @calls = Call.time_sorted
     erb :'calls/index'
   end
 
   get '/calls/recent' do
-    @calls = Call.this_week.order('created_at DESC')
+    @calls = Call.this_week.time_sorted
     erb :'calls/recent'
   end
 
