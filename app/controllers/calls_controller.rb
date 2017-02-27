@@ -26,26 +26,19 @@ class CallsController < ApplicationController
 
   patch '/calls' do
     call = Call.find params[:id]
-    if current_user == call.user
-      call.rating       = params[:rating]
-      call.got_through  = params[:got_through]
-      call.busy         = params[:busy]
-      call.voice_mail   = params[:voice_mail]
-      call.mailbox_full = params[:mailbox_full]
-      call.comments     = params[:comments]
 
-      if call.save
-        call_path = "#{params[:path]}#call#{call.id}-card"
-        call_link = "<a href='#{call_path}'>here</a>"
-        flash[:message] = ["Your review was successfully updated. View it #{call_link}."]
-      else
-        flash[:message] = call.errors.full_messages
-      end
-      redirect params[:path] || "/users/#{current_user.slug}"
+    # Don't allow the patch unless the user is logged_in and is the current_user
+    redirect '/login' unless current_user == call.user
 
+    if call.update params[:call]
+      call_anchor = "#{params[:path]}#call#{call.id}-card"
+      call_link = "<a href='#{call_anchor}'>here</a>"
+      flash[:message] = ["Your review was successfully updated. View it #{call_link}."]
     else
-      redirect '/login'
+      flash[:message] = call.errors.full_messages
     end
+
+    redirect params[:path] || "/users/#{current_user.slug}"
   end
 
   get '/calls/new/:office_id' do

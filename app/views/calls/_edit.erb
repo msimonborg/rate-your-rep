@@ -10,7 +10,7 @@
           <input type="hidden" name="_method" value="patch">
           <input type="hidden" name="id" value="<%= call.id %>">
           <input type="hidden" name="path" value="<%= request.fullpath %>">
-          <select class="form-control col-sm-12" name="rating">
+          <select class="form-control col-sm-12" name="call[rating]">
             <% call_rating = call.rating %>
             <option value="5" <%= "selected='selected'" if call_rating == 5 %>>
               5 (very satisfied)
@@ -25,28 +25,28 @@
           <div class="form-group">
             <div class="col-sm-3">
               <label class="checkbox-inline">
-                <input type="checkbox" value="true" name="got_through" <%= 'checked' if call.got_through %>>I talked to a human
+                <input type="checkbox" value="true" name="call[got_through]" <%= 'checked' if call.got_through %>>I talked to a human
               </label>
             </div>
             <div class="col-sm-3">
               <label class="checkbox-inline">
-                <input type="checkbox" value="true" name="busy" <%= 'checked' if call.busy %>>The line was busy
+                <input type="checkbox" value="true" name="call[busy]" <%= 'checked' if call.busy %>>The line was busy
               </label>
             </div>
             <div class="col-sm-3">
               <label class="checkbox-inline">
-                <input type="checkbox" value="true" name="voice_mail" <%= 'checked' if call.voice_mail %>>I left a voicemail
+                <input type="checkbox" value="true" name="call[voice_mail]" <%= 'checked' if call.voice_mail %>>I left a voicemail
               </label>
             </div>
             <div class="col-sm-3">
               <label class="checkbox-inline">
-                <input type="checkbox" value="true" name="mailbox_full" <%= 'checked' if call.mailbox_full %>>The mailbox was full
+                <input type="checkbox" value="true" name="call[mailbox_full]" <%= 'checked' if call.mailbox_full %>>The mailbox was full
               </label>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-8 col-sm-offset-2">
-              <textarea type="text" class="form-control" name="comments" maxlength="140"><%= call.comments %></textarea>
+              <textarea type="text" class="form-control" name="call[comments]" maxlength="140"><%= call.comments %></textarea>
             </div>
           </div>
           <div class="form-group tyr-modal-form-button">
