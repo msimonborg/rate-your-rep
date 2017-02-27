@@ -1,4 +1,6 @@
 class Call < ActiveRecord::Base
+  include Repable
+
   belongs_to :user
   belongs_to :office_location
   belongs_to :rep, foreign_key: :bioguide_id, primary_key: :bioguide_id
@@ -27,22 +29,6 @@ class Call < ActiveRecord::Base
 
   def time
     created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P")
-  end
-
-  def rep_party
-    rep.party_identification
-  end
-
-  def rep_title
-    rep.honorific_prefix
-  end
-
-  def rep_name
-    rep.official_full
-  end
-
-  def rep_bioguide_id
-    bioguide_id
   end
 
   def phone_number

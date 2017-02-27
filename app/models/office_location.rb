@@ -1,5 +1,6 @@
 class OfficeLocation < ActiveRecord::Base
   include Callable
+  include Repable
 
   belongs_to :rep, foreign_key: :bioguide_id, primary_key: :bioguide_id
   has_many :calls
