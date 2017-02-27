@@ -1,16 +1,16 @@
-<% last_call = user.calls.last_call %>
+<% last_call = user.last_call %>
 <div class="tyr-card user-card col-sm-10 col-sm-offset-1">
   <div class="page-header">
     <h3><%= user.username %></h3>
   </div>
   <div class="col-sm-4">
-    <p><%= pluralize user.calls.count, 'call', 'calls' %></p>
+    <p><%= pluralize user.calls_count, 'call', 'calls' %></p>
   </div>
   <div class="col-sm-4">
-    <% if user.calls.blank? %>
+    <% if user.no_calls? %>
       <p>No rating information available.</p>
     <% else %>
-      <p><%= user.calls.average('rating').round(1) %> average rating.</p>
+      <p><%= user.average_call_rating %> average rating.</p>
     <% end %>
   </div>
   <div class="col-sm-4">
@@ -18,7 +18,7 @@
     <p><%= user.username %> has called <%= pluralize distinct_offices, 'office', 'offices', inner_string: 'distinct' %></p>
   </div>
   <div class="col-sm-8">
-    <% if user.calls.blank? %>
+    <% if user.no_calls? %>
       <p><%= user.username %> is still waiting to make their first call.</p>
     <% else %>
       <p>Last call made <%= last_call.time %> to <a href="/reps/<%= last_call.rep.bioguide_id %>"><%= last_call.rep_name %></a> and was rated <%= pluralize last_call.rating, 'star', 'stars' %></p>

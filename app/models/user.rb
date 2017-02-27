@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Callable
+
   has_many :calls
   has_many :reps, through: :calls
   has_many :office_locations, through: :calls
@@ -23,5 +25,9 @@ class User < ActiveRecord::Base
                 gsub(/(\.|!|\?|\(|\)|&|%|@)/, '').
                 tr('$', 's').
                 downcase
+  end
+
+  def time_sorted_calls_including_reps_and_offices
+    time_sorted_calls.includes(:rep, :office_location)
   end
 end
