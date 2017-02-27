@@ -1,0 +1,41 @@
+<div class="modal fade" id="call<%= call.id %>-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Details</h2>
+      </div>
+      <div class="modal-body">
+        <p>
+        <%= display_stars call.rating %>
+        <%= call.time %>
+        by
+        <% if call.user %>
+          <a href="/users/<%= call.user_slug %>">@<%= call.user_slug %></a>
+        <% else %>
+          anonymous
+        <% end %>
+        <% if current_user == call.user %>
+          <a href="#" role="button" class="edit-call-modal-button btn btn-default btn-xs" data-dismiss="modal" data-toggle="modal" data-target="#call<%= call.id %>-edit-modal">edit review</a>
+        <% end %>
+        </p>
+        <h4><%= call.no_comments? ? 'No additional comments.' : call.comments %></h4>
+        <% if call.got_through %>
+          <h5>The call was connected</h5>
+        <% end %>
+        <% if call.busy %>
+          <h5>The line was busy</h5>
+        <% end %>
+        <% if call.voice_mail %>
+          <h5>The caller left a voicemail</h5>
+        <% end %>
+        <% if call.mailbox_full %>
+          <h5>The mailbox was full</h5>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>

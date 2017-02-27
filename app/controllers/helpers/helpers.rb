@@ -8,7 +8,7 @@ module Helpers
   end
 
   def partial(page, options={})
-    erb page, options.merge!(layout: false)
+    erb(page, options.merge!(layout: false))
   end
 
   def pluralize(count, singular, plural, inner_string: nil)
