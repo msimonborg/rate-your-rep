@@ -3,12 +3,12 @@ module Callable
     calls.average('rating').round(1)
   end
 
-  def recent_calls
+  def calls_this_week
     calls.this_week
   end
 
-  def recent_calls_count
-    recent_calls.count
+  def calls_this_week_count
+    calls_this_week.count
   end
 
   def calls_count

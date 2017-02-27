@@ -28,7 +28,7 @@
         <h3><%= @user.username %> hasn't made any calls yet.</h3>
       <% end %>
     <% else %>
-      <h3>Calls this week: <%= @user.recent_calls_count %></h3>
+      <h3>Calls this week: <%= @user.calls_this_week_count %></h3>
       <h3>Lifetime total: <%= @user.calls_count %></h3>
       <h3>
         Average call rating: <%= @user.average_call_rating %>
