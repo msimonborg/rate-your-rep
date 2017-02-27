@@ -1,0 +1,47 @@
+<!-- Edit Modal -->
+  <%= partial :'users/_edit', locals: { user: @user } %>
+<!-- End Edit Modal -->
+
+<!-- Change Password Modal -->
+  <%= partial :'users/_change_password', locals: { user: @user } %>
+<!-- End Change Password Modal -->
+
+<!-- Delete Account Modal -->
+  <%= partial :'users/_delete', locals: { user: @user } %>
+<!-- End Delete Account Modal -->
+
+<div class="container">
+  <div class="col-sm-12">
+    <h1>Account Settings</h1>
+  </div>
+  <div class="tyr-card account-card col-sm-8 col-sm-offset-2">
+    <div class="col-lg-4 col-lg-offset-2">
+      <h3>Username:</h3>
+    </div>
+    <div class="col-lg-6">
+      <h3><%= @user.username %></h3>
+    </div>
+    <div class="col-lg-4 col-lg-offset-2">
+      <h3>Email:</h3>
+    </div>
+    <div class="col-lg-6">
+      <h3><%= @user.email %></h3>
+    </div>
+    <div class="col-lg-4 col-lg-offset-2">
+      <h3>Password:</h3>
+    </div>
+    <div class="col-lg-6">
+      <h3><a id="password-modal-button" href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#password-modal">change password</a></h3>
+    </div>
+    <div class="col-sm-8 col-sm-offset-2">
+      <a href="#" class="btn btn-primary btn-block settings-modal-button" data-toggle="modal" data-target="#edit-modal">
+        edit
+      </a>
+    </div>
+    <div class="col-sm-8 col-sm-offset-2">
+      <a href="#" class="btn btn-danger btn-block settings-modal-button" data-toggle="modal" data-target="#delete-modal">
+        delete
+      </a>
+    </div>
+  </div>
+</div>
