@@ -103,7 +103,7 @@ describe 'User' do
     end
 
     it 'has many calls' do
-      expect(@user1.calls.count).to eq(2)
+      expect(@user1.calls_count).to eq(2)
       expect(@user1.calls).to include(@call1)
       expect(@user1.calls).to include(@call2)
     end
@@ -116,8 +116,8 @@ describe 'User' do
 
     it 'has many office locations through calls' do
       expect(@user1.office_locations.count).to eq(2)
-      expect(@user1.office_locations.distinct.count).to eq(1)
-      expect(@user1.office_locations.distinct).to include(@office1)
+      expect(@user1.distinct_office_locations_count).to eq(1)
+      expect(@user1.distinct_office_locations).to include(@office1)
     end
   end
 end

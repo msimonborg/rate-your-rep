@@ -28,4 +28,8 @@ class Rep < ActiveRecord::Base
     order("calls_rating DESC") }
 
   attr_accessor :url, :photo, :twitter, :facebook, :youtube, :instagram, :state, :district, :vcard
+
+  def office_locations_count
+    office_locations.count
+  end
 end

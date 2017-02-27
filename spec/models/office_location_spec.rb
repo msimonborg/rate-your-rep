@@ -124,7 +124,7 @@ describe 'OfficeLocation' do
     end
 
     it 'has many calls' do
-      expect(@office1.calls.count).to eq(2)
+      expect(@office1.calls_count).to eq(2)
       expect(@office1.calls).to include(@call1)
       expect(@office1.calls).to include(@call2)
     end
@@ -143,7 +143,7 @@ describe 'OfficeLocation' do
                           user: @user1,
                           office_location_id: 10)
 
-      expect(@office1.calls.count).to eq(2)
+      expect(@office1.calls_count).to eq(2)
       expect(@office1.calls).to include(@call1)
       expect(@office1.calls).to include(@call2)
       expect(@office1.calls).to_not include(call3)

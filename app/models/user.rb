@@ -30,4 +30,12 @@ class User < ActiveRecord::Base
   def time_sorted_calls_including_reps_and_offices
     time_sorted_calls.includes(:rep, :office_location)
   end
+
+  def distinct_office_locations
+    office_locations.distinct
+  end
+
+  def distinct_office_locations_count
+    distinct_office_locations.count
+  end
 end

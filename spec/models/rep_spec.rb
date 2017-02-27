@@ -162,7 +162,7 @@ describe 'Rep' do
       end
 
       it 'associates calls by Bioguide ID' do
-        expect(@rep1.calls.count).to eq(1)
+        expect(@rep1.calls_count).to eq(1)
       end
 
       it 'has many calls' do
@@ -172,7 +172,7 @@ describe 'Rep' do
                             rating: 2,
                             user: @user1)
 
-        expect(@rep1.calls.count).to eq(2)
+        expect(@rep1.calls_count).to eq(2)
       end
 
       it 'only has calls with the same Bioguide ID' do
@@ -182,7 +182,7 @@ describe 'Rep' do
                             rating: 2,
                             user: @user1)
 
-        expect(@rep1.calls.count).to eq(1)
+        expect(@rep1.calls_count).to eq(1)
         expect(@rep1.calls).to include(@call1)
         expect(@rep1.calls).to_not include(call2)
       end

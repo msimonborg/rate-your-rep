@@ -9,21 +9,21 @@
       </div>
       <div class="modal-body">
         <% rep.office_locations.each do |office| %>
-          <% last_office_call =  office.calls.last_call %>
+          <% last_office_call =  office.last_call %>
           <div class="panel panel-default">
             <div class="panel-body">
               <h4><%= office.locality %>, <%= office.region %> Office <a href="tel:<%= office.phone %>"><%= office.phone %></a></h4>
-              <% if office.calls.blank? %>
+              <% if office.no_calls? %>
                 <p>No calls made to this office yet.</p>
               <% else %>
                 <p>
-                  <%= pluralize office.calls.count, 'call', 'calls' %>, average rating
-                  <%= display_stars office.calls.stars %>
+                  <%= pluralize office.calls_count, 'call', 'calls' %>, average rating
+                  <%= display_stars office.calls_stars %>
                 </p>
-                <p>Last call made <%= office.calls.last_call.time %>
+                <p>Last call made <%= last_office_call.time %>
                 by
                 <% if last_office_call.user %>
-                  <a href="/users/<%= office.calls.last_call.user_slug %>">@<%= office.calls.last_call.user_slug %></a>
+                  <a href="/users/<%= last_office_call.user_slug %>">@<%= last_office_call.user_slug %></a>
                 <% else %>
                   anonymous.
                 <% end %>
@@ -91,7 +91,7 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <p><%= rep.given_name %> has <%= pluralize rep.office_locations.distinct.count, 'office', 'offices' %> you can call.</p>
+    <p><%= rep.given_name %> has <%= pluralize rep.office_locations_count, 'office', 'offices' %> you can call.</p>
   </div>
   <div class="col-sm-8">
     <% if rep.no_calls? %>

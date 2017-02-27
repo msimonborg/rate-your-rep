@@ -2,7 +2,7 @@
   <div class="page-header">
     <h2><%= @rep.given_name %>
       <% unless @rep.no_calls? %>
-        <%= case @rep.calls.stars
+        <%= case @rep.calls_stars
         when 5
           'is outstanding and deserves to hear it'
         when 4
@@ -15,7 +15,7 @@
           'should work on their resume'
         end %>
         <small>
-          <%= display_stars @rep.calls.stars %>
+          <%= display_stars @rep.calls_stars %>
       <% else %>
         needs a call. <small>Why don't you be the first to oblige?
       <% end %>
@@ -33,10 +33,10 @@
       <h1>No stats available.</h1>
     <% else %>
       <h1>Call stats</h1>
-      <h3><%= (@rep.calls.where(got_through: true).count.to_f / @rep.calls_count * 100).round(1) %>% were answered by a human.</h3>
-      <h3><%= (@rep.calls.where(busy: true).count.to_f / @rep.calls_count * 100).round(1) %>% got a busy signal.</h3>
-      <h3><%= (@rep.calls.where(voice_mail: true).count.to_f / @rep.calls_count * 100).round(1) %>% went to voicemail.</h3>
-      <h3><%= (@rep.calls.where(mailbox_full: true).count.to_f / @rep.calls_count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
+      <h3><%= (@rep.calls.that_connected.count.to_f / @rep.calls_count * 100).round(1) %>% were answered by a human.</h3>
+      <h3><%= (@rep.calls.that_were_busy.count.to_f / @rep.calls_count * 100).round(1) %>% got a busy signal.</h3>
+      <h3><%= (@rep.calls.that_went_to_voice_mail.count.to_f / @rep.calls_count * 100).round(1) %>% went to voicemail.</h3>
+      <h3><%= (@rep.calls.that_hit_a_full_mailbox.count.to_f / @rep.calls_count * 100).round(1) %>% were not delivered because the mailbox was full.</h3>
     <% end %>
   </div>
   <%= partial :'reps/_rep', locals: { rep: @rep } %>

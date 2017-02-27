@@ -11,6 +11,10 @@ class Call < ActiveRecord::Base
   scope :time_sorted, ->{ order('created_at DESC') }
   scope :last_call, ->{ time_sorted.limit(1).first }
   scope :stars, ->{ average('rating').to_i.round }
+  scope :that_connected, ->{ where(got_through: true) }
+  scope :that_were_busy, ->{ where(busy: true) }
+  scope :that_went_to_voice_mail, ->{ where(voice_mail: true) }
+  scope :that_hit_a_full_mailbox, ->{ where(mailbox_full: true) }
 
   def time
     created_at.localtime.strftime("%-m/%-d/%y at %l:%M%P")

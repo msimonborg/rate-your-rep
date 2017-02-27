@@ -14,8 +14,8 @@
     <% end %>
   </div>
   <div class="col-sm-4">
-    <% distinct_offices = user.office_locations.distinct.count %>
-    <p><%= user.username %> has called <%= pluralize distinct_offices, 'office', 'offices', inner_string: 'distinct' %></p>
+    <% distinct_office_count = user.distinct_office_locations_count %>
+    <p><%= user.username %> has called <%= pluralize distinct_office_count, 'office', 'offices', inner_string: 'distinct' %></p>
   </div>
   <div class="col-sm-8">
     <% if user.no_calls? %>
