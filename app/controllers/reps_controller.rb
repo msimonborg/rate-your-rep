@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Routing and controller actions for Rep views
 class RepsController < ApplicationController
   get '/reps' do
     @reps = Rep.order('family_name ASC')

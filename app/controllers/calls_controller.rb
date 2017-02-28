@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Routing and controller actions for Call views
 class CallsController < ApplicationController
   get '/calls' do
     @calls = Call.time_sorted
@@ -13,7 +16,9 @@ class CallsController < ApplicationController
     if logged_in?
       @call = Call.new params
       if @call.save
-        flash[:message] = ["Your call to #{@call.rep_name} was saved successfully!"]
+        flash[:message] = [
+          "Your call to #{@call.rep_name} was saved successfully!"
+        ]
         redirect '/calls/recent'
       else
         flash[:message] = @call.errors.full_messages
@@ -32,7 +37,9 @@ class CallsController < ApplicationController
     if call.user_update params[:call]
       call_anchor = "#{params[:path]}#call#{call.id}-card"
       call_link = "<a href='#{call_anchor}'>here</a>"
-      flash[:message] = ["Your review was successfully updated. View it #{call_link}."]
+      flash[:message] = [
+        "Your review was successfully updated. View it #{call_link}."
+      ]
     else
       flash[:message] = call.errors.full_messages
     end
