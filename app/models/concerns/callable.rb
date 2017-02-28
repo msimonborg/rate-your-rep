@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Shared methods for models that has_many :calls
 module Callable
   def average_call_rating
     calls.average_rating
