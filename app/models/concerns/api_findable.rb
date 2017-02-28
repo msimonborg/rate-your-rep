@@ -66,6 +66,9 @@ module APIFindable
 
   module InstanceMethods
     def add_rep_attributes(rep)
+      vcard = rep['office_locations'].find { |o| o['office_type'] == 'capitol' }
+      
+      self.vcard     = vcard['v_card_link']
       self.url       = rep['url']
       self.photo     = rep['photo']
       self.twitter   = rep['twitter']
@@ -74,7 +77,6 @@ module APIFindable
       self.instagram = rep['instagram']
       self.state     = rep['state']['name']
       self.district  = rep['district']['code'] if rep['district']
-      self.vcard = rep['office_locations'].find { |o| o['office_type'] == 'capitol' }['v_card_link']
     end
   end
 end
