@@ -1,6 +1,6 @@
 module Callable
   def average_call_rating
-    calls.average('rating').round(1)
+    calls.average_rating
   end
 
   def calls_this_week

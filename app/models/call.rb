@@ -12,7 +12,8 @@ class Call < ActiveRecord::Base
   scope :this_week, ->{ where(created_at: (Time.now.midnight - 7.day)..Time.now) }
   scope :time_sorted, ->{ order('created_at DESC') }
   scope :last_call, ->{ time_sorted.limit(1).first }
-  scope :stars, ->{ average('rating').to_i.round }
+  scope :stars, ->{ average('rating').round.to_i }
+  scope :average_rating, ->{ average('rating').round(1).to_f }
   scope :that_connected, ->{ where(got_through: true) }
   scope :that_were_busy, ->{ where(busy: true) }
   scope :that_went_to_voice_mail, ->{ where(voice_mail: true) }
