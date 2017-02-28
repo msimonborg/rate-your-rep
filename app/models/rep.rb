@@ -2,8 +2,7 @@
 
 # Rep object is created from data retrieved by an API call
 class Rep < ActiveRecord::Base
-  extend APIFindable::ClassMethods
-  include APIFindable::InstanceMethods
+  include APIFindable
   include Callable
 
   has_many :calls, foreign_key: :bioguide_id, primary_key: :bioguide_id
