@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Routing and controller actions for User views
 class UsersController < ApplicationController
   get '/login' do
     if logged_in?
@@ -17,7 +20,7 @@ class UsersController < ApplicationController
         redirect params[:path]
       end
     else
-      flash[:message] = ["Incorrect email/password match, please try again."]
+      flash[:message] = ['Incorrect email/password match, please try again.']
       redirect '/'
     end
   end
@@ -78,9 +81,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    if logged_in?
-      session.clear
-    end
+    session.clear if logged_in?
     redirect '/'
   end
 
