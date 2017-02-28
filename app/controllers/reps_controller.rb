@@ -42,7 +42,10 @@ class RepsController < ApplicationController
   end
 
   get '/reps/:bioguide_id' do
-    @rep = Rep.search_by_bioguide_id(params[:bioguide_id]).first
-    erb :'reps/show'
+    if @rep = Rep.search_by_bioguide_id(params[:bioguide_id]).first
+      erb :'reps/show'
+    else
+      not_found
+    end
   end
 end

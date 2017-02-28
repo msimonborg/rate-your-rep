@@ -11,6 +11,13 @@ div.call-stats a {
   text-decoration: none;
 }
 
+.not-found {
+  margin-top: 12em;
+  margin-bottom: 12em;
+  display: block;
+  text-align: center;
+}
+
 .navbar {
   background-color: #FF5A55;
 }

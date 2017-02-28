@@ -47,8 +47,11 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.where(slug: params[:slug]).includes(:calls).take
-    erb :'users/show'
+    if @user = User.where(slug: params[:slug]).includes(:calls).take
+      erb :'users/show'
+    else
+      not_found
+    end
   end
 
   get '/users/:slug/edit' do

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require './config/environment'
 require 'rack-flash'
-
 # Main app controller
 class ApplicationController < Sinatra::Base
   configure do
@@ -19,6 +18,11 @@ class ApplicationController < Sinatra::Base
   end
 
   use Rack::Flash
+
+  not_found do
+    status 404
+    erb :'404'
+  end
 
   get '/' do
     erb :index

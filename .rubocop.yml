@@ -1,0 +1,9 @@
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'Rakefile'

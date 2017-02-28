@@ -49,7 +49,7 @@ module APIFindable
       @response.map do |rep|
         db_rep = Rep.find_by bioguide_id: rep['bioguide_id']
         db_rep = create_rep_from_api(rep) unless db_rep
-        next unless db_rep
+        next unless db_rep.valid?
         parse_office_locations(rep)
         db_rep.add_rep_attributes(rep)
         db_rep

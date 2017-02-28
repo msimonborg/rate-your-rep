@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Rep object is created from data retrieved by an API call
 class Rep < ActiveRecord::Base
   include APIFindable

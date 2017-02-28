@@ -48,7 +48,8 @@ class CallsController < ApplicationController
   end
 
   get '/calls/new/:office_id' do
-    @office = OfficeLocation.find params[:office_id]
+    @office = OfficeLocation.find_by id: params[:office_id]
+    not_found if @office.blank?
     erb :'calls/new'
   end
 end
