@@ -7,3 +7,22 @@ Style/Lambda:
 Lint/HandleExceptions:
   Exclude:
     - 'Rakefile'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'db/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'db/**/*'

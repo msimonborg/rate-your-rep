@@ -47,7 +47,8 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    if @user = User.where(slug: params[:slug]).includes(:calls).take
+    @user = User.where(slug: params[:slug]).includes(:calls).take
+    if @user
       erb :'users/show'
     else
       not_found

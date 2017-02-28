@@ -32,20 +32,6 @@ class Rep < ActiveRecord::Base
       order('calls_rating DESC')
   }
 
-  # These attributes are pulled in from the API whenever a Rep's show page
-  # is viewed, or is found by location.
-  # Since they might change they are not persisted to the database,
-  # and instead are stored in memory while the object is in use.
-  attr_accessor :url,
-                :photo,
-                :twitter,
-                :facebook,
-                :youtube,
-                :instagram,
-                :state,
-                :district,
-                :vcard
-
   def office_locations_count
     office_locations.count
   end

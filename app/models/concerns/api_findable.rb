@@ -8,20 +8,33 @@ module APIFindable
     base.extend(ClassMethods)
   end
 
-  def add_rep_attributes(rep)
-    self.url       = rep['url']
-    self.photo     = rep['photo']
-    self.twitter   = rep['twitter']
-    self.youtube   = rep['youtube']
-    self.facebook  = rep['facebook']
-    self.instagram = rep['instagram']
-    self.state     = rep['state']['name']
-    self.vcard     = parse_vcard_url(rep)
-    self.district  = rep['district']['code'] if rep['district']
+  def update_rep_personal_data(rep_hash)
+    self.given_name       = rep_hash['first']
+    self.family_name      = rep_hash['last']
+    self.additional_name  = rep_hash['middle']
+    self.honorific_suffix = rep_hash['suffix']
   end
 
-  def parse_vcard_url(rep)
-    capitol_office_hash = rep['office_locations'].find do |office|
+  def update_rep_social_data(rep_hash)
+    self.vcard     = parse_vcard_url(rep_hash)
+    self.url       = rep_hash['url']
+    self.twitter   = rep_hash['twitter']
+    self.youtube   = rep_hash['youtube']
+    self.facebook  = rep_hash['facebook']
+    self.instagram = rep_hash['instagram']
+  end
+
+  def update_rep_political_data(rep_hash)
+    self.district  = rep_hash['district']['code'] if rep_hash['district']
+    self.official_full        = rep_hash['official_full']
+    self.honorific_prefix     = rep_hash['role']
+    self.party_identification = rep_hash['party']
+    self.state                = rep_hash['state']['name']
+    self.photo                = rep_hash['photo']
+  end
+
+  def parse_vcard_url(rep_hash)
+    capitol_office_hash = rep_hash['office_locations'].find do |office|
       office['office_type'] == 'capitol'
     end
 
@@ -46,31 +59,19 @@ module APIFindable
     end
 
     def parse_reps
-      @response.map do |rep|
-        db_rep = Rep.find_by bioguide_id: rep['bioguide_id']
-        db_rep = create_rep_from_api(rep) unless db_rep
-        next unless db_rep.valid?
-        parse_office_locations(rep)
-        db_rep.add_rep_attributes(rep)
+      @response.map do |rep_hash|
+        db_rep = Rep.find_or_create_by bioguide_id: rep_hash['bioguide_id']
+        parse_office_locations(rep_hash)
+        db_rep.update_rep_political_data(rep_hash)
+        db_rep.update_rep_personal_data(rep_hash)
+        db_rep.update_rep_social_data(rep_hash)
+        db_rep.save
         db_rep
       end
     end
 
-    def create_rep_from_api(rep)
-      Rep.create do |r|
-        r.bioguide_id          = rep['bioguide_id']
-        r.official_full        = rep['official_full']
-        r.given_name           = rep['first']
-        r.family_name          = rep['last']
-        r.additional_name      = rep['middle']
-        r.honorific_suffix     = rep['suffix']
-        r.honorific_prefix     = rep['role']
-        r.party_identification = rep['party']
-      end
-    end
-
-    def parse_office_locations(rep)
-      rep['office_locations'].each do |office|
+    def parse_office_locations(rep_hash)
+      rep_hash['office_locations'].each do |office|
         db_ol = OfficeLocation.find_or_create_by(
           bioguide_id: office['bioguide_id'],
           locality:    office['city'],
