@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'OfficeLocation' do
@@ -34,10 +35,10 @@ describe 'OfficeLocation' do
 
     it 'requires bioguide_id to persist' do
       office2 = OfficeLocation.create(bioguide_id: '',
-                              locality: 'locality2',
-                              region: 'region2',
-                              postal_code: 'postal_code2',
-                              phone: '123-456-7890')
+                                      locality: 'locality2',
+                                      region: 'region2',
+                                      postal_code: 'postal_code2',
+                                      phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -45,10 +46,10 @@ describe 'OfficeLocation' do
 
     it 'requires locality to persist' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
-                              locality: '',
-                              region: 'region2',
-                              postal_code: 'postal_code2',
-                              phone: '123-456-7890')
+                                      locality: '',
+                                      region: 'region2',
+                                      postal_code: 'postal_code2',
+                                      phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -56,10 +57,10 @@ describe 'OfficeLocation' do
 
     it 'requires region to persist' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
-                              locality: 'locality2',
-                              region: '',
-                              postal_code: 'postal_code2',
-                              phone: '123-456-7890')
+                                      locality: 'locality2',
+                                      region: '',
+                                      postal_code: 'postal_code2',
+                                      phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -67,10 +68,10 @@ describe 'OfficeLocation' do
 
     it 'requires postal_code to persist' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
-                              locality: 'locality2',
-                              region: 'region2',
-                              postal_code: '',
-                              phone: '123-456-7890')
+                                      locality: 'locality2',
+                                      region: 'region2',
+                                      postal_code: '',
+                                      phone: '123-456-7890')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -78,10 +79,10 @@ describe 'OfficeLocation' do
 
     it 'requires phone to persist' do
       office2 = OfficeLocation.create(bioguide_id: 'bioguide_id2',
-                              locality: 'locality2',
-                              region: 'region2',
-                              postal_code: 'postal_code2',
-                              phone: '')
+                                      locality: 'locality2',
+                                      region: 'region2',
+                                      postal_code: 'postal_code2',
+                                      phone: '')
 
       expect(office2.id).to eq(nil)
       expect(OfficeLocation.count).to eq(1)
@@ -90,7 +91,9 @@ describe 'OfficeLocation' do
 
   describe 'associations' do
     before do
-      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+      @user1 = User.create(username: 'Test User',
+                           email: 'email@example.com',
+                           password: 'password')
 
       @call1 = Call.create(bioguide_id: @rep1.bioguide_id,
                            comments: 'very satisfied',

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe ApplicationController do
@@ -5,7 +6,9 @@ describe ApplicationController do
 
   describe 'Sessions' do
     before do
-      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+      @user1 = User.create(username: 'Test User',
+                           email: 'email@example.com',
+                           password: 'password')
       helpers.session[:user_id] = @user1.id
     end
 
@@ -14,7 +17,9 @@ describe ApplicationController do
     end
 
     it 'knows who the current user is' do
-      user2 = User.create(username: 'User Two', email: 'another@email.com', password: 'password')
+      user2 = User.create(username: 'User Two',
+                          email: 'another@email.com',
+                          password: 'password')
       expect(helpers.current_user).to eq(@user1)
       expect(helpers.current_user).to_not eq(user2)
     end

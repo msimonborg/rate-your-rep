@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'Call' do
@@ -15,7 +16,9 @@ describe 'Call' do
                        honorific_prefix: 'Honorable',
                        party_identification: 'Worker\'s Party')
 
-                       @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+    @user1 = User.create(username: 'Test User',
+                         email: 'email@example.com',
+                         password: 'password')
 
     @call1 = Call.create(bioguide_id: @rep1.bioguide_id,
                          comments: 'very satisfied',
@@ -77,7 +80,9 @@ describe 'Call' do
 
       expect(call3.id).to eq(nil)
       expect(Call.count).to eq(2)
-      expect(call3.errors.full_messages.first).to include('6 is not a valid rating')
+      expect(call3.errors.full_messages.first).to include(
+        '6 is not a valid rating'
+      )
 
       call4 = Call.create(bioguide_id: @rep1.bioguide_id,
                           comments: 'very frustrated',
@@ -88,7 +93,9 @@ describe 'Call' do
 
       expect(call4.id).to eq(nil)
       expect(Call.count).to eq(2)
-      expect(call4.errors.full_messages.first).to include('0 is not a valid rating')
+      expect(call4.errors.full_messages.first).to include(
+        '0 is not a valid rating'
+      )
     end
   end
 end

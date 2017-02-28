@@ -1,13 +1,14 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'Rep' do
   before do
     @rep1 = Rep.create(bioguide_id: 'A000DS32',
-                      official_full: 'Madam Senator',
-                      given_name: 'Madam',
-                      family_name: 'Senator',
-                      honorific_prefix: 'Honorable',
-                      party_identification: 'Worker\'s Party')
+                       official_full: 'Madam Senator',
+                       given_name: 'Madam',
+                       family_name: 'Senator',
+                       honorific_prefix: 'Honorable',
+                       party_identification: 'Worker\'s Party')
   end
 
   describe 'creating reps' do
@@ -114,21 +115,21 @@ describe 'Rep' do
   describe 'associations' do
     before do
       @office1 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
-                                      locality: 'locality1',
-                                      region: 'region1',
-                                      postal_code: 'postal_code1',
-                                      office_type: 'district',
-                                      phone: '123-456-7890')
+                                       locality: 'locality1',
+                                       region: 'region1',
+                                       postal_code: 'postal_code1',
+                                       office_type: 'district',
+                                       phone: '123-456-7890')
     end
 
     describe 'has many office locations' do
       it 'associated by Bioguide ID' do
-        office2 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
-                                        locality: 'locality2',
-                                        region: 'region2',
-                                        postal_code: 'postal_code2',
-                                        office_type: 'district',
-                                        phone: '123-456-7890')
+        OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
+                              locality: 'locality2',
+                              region: 'region2',
+                              postal_code: 'postal_code2',
+                              office_type: 'district',
+                              phone: '123-456-7890')
 
         expect(@rep1.office_locations.count).to eq(2)
       end
@@ -148,7 +149,6 @@ describe 'Rep' do
     end
 
     describe 'has many calls' do
-
       before do
         @user1 = User.create(username: 'username1',
                              email: 'email@one.com',
@@ -166,11 +166,11 @@ describe 'Rep' do
       end
 
       it 'has many calls' do
-        call2 = Call.create(bioguide_id: @rep1.bioguide_id,
-                            comments: 'very frustrated',
-                            mailbox_full: true,
-                            rating: 2,
-                            user: @user1)
+        Call.create(bioguide_id: @rep1.bioguide_id,
+                    comments: 'very frustrated',
+                    mailbox_full: true,
+                    rating: 2,
+                    user: @user1)
 
         expect(@rep1.calls_count).to eq(2)
       end
@@ -188,11 +188,11 @@ describe 'Rep' do
       end
 
       it 'has many users through calls' do
-        call2 = Call.create(bioguide_id: @rep1.bioguide_id,
-                            comments: 'very frustrated',
-                            mailbox_full: true,
-                            rating: 2,
-                            user: @user1)
+        Call.create(bioguide_id: @rep1.bioguide_id,
+                    comments: 'very frustrated',
+                    mailbox_full: true,
+                    rating: 2,
+                    user: @user1)
 
         expect(@rep1.users.count).to eq(2)
         expect(@rep1.users.distinct.count).to eq(1)

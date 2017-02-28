@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 source 'http://rubygems.org'
 
 ruby '2.3.3'
 
 gem 'sinatra'
-gem 'activerecord', :require => 'active_record'
-gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'activerecord', require: 'active_record'
+gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
 gem 'bcrypt'

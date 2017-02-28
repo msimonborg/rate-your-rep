@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'User' do
   before do
-    @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+    @user1 = User.create(username: 'Test User',
+                         email: 'email@example.com',
+                         password: 'password')
   end
 
   describe 'creating users' do
@@ -21,51 +24,69 @@ describe 'User' do
     end
 
     it 'has a unique email' do
-      user2 = User.new(username: 'Another User', email: 'email@example.com', password: 'password')
+      user2 = User.new(username: 'Another User',
+                       email: 'email@example.com',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'has a unique username' do
-      user2 = User.new(username: 'Test User', email: 'otheremail@example.com', password: 'password')
+      user2 = User.new(username: 'Test User',
+                       email: 'otheremail@example.com',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'requires a username' do
-      user2 = User.new(username: '', email: 'another@email.com', password: 'password')
+      user2 = User.new(username: '',
+                       email: 'another@email.com',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'requires an email' do
-      user2 = User.new(username: 'Another User', email: '', password: 'password')
+      user2 = User.new(username: 'Another User',
+                       email: '',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'requires a valid email' do
-      user2 = User.new(username: 'Another User', email: 'email', password: 'password')
+      user2 = User.new(username: 'Another User',
+                       email: 'email',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
 
-      user2 = User.new(username: 'Another User', email: 'email@email', password: 'password')
+      user2 = User.new(username: 'Another User',
+                       email: 'email@email',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
 
-      user2 = User.new(username: 'Another User', email: '@email.com', password: 'password')
+      user2 = User.new(username: 'Another User',
+                       email: '@email.com',
+                       password: 'password')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'requires a password' do
-      user2 = User.new(username: 'Another User', email: 'another@email.com', password: '')
+      user2 = User.new(username: 'Another User',
+                       email: 'another@email.com',
+                       password: '')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
 
     it 'password must be at least 8 characters long' do
-      user2 = User.new(username: 'Another User', email: 'another@email.com', password: 'passwor')
+      user2 = User.new(username: 'Another User',
+                       email: 'another@email.com',
+                       password: 'passwor')
       expect(user2.save).to eq(false)
       expect(User.count).to eq(1)
     end
@@ -74,11 +95,11 @@ describe 'User' do
   describe 'associations' do
     before do
       @rep1 = Rep.create(bioguide_id: 'A000DS32',
-                        official_full: 'Madam Senator',
-                        given_name: 'Madam',
-                        family_name: 'Senator',
-                        honorific_prefix: 'Honorable',
-                        party_identification: 'Worker\'s Party')
+                         official_full: 'Madam Senator',
+                         given_name: 'Madam',
+                         family_name: 'Senator',
+                         honorific_prefix: 'Honorable',
+                         party_identification: 'Worker\'s Party')
 
       @office1 = OfficeLocation.create(bioguide_id: @rep1.bioguide_id,
                                        locality: 'locality1',

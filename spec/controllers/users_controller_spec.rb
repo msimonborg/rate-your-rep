@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe UsersController do
@@ -5,7 +6,9 @@ describe UsersController do
 
   describe 'Log In' do
     before do
-      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+      @user1 = User.create(username: 'Test User',
+                           email: 'email@example.com',
+                           password: 'password')
     end
 
     it 'logs in with valid email and password' do
@@ -32,7 +35,9 @@ describe UsersController do
 
   describe 'Sign Up' do
     it 'succeeds with valid username, email, and password' do
-      params = { username: 'Test User', email: 'email@example.com', password: 'password' }
+      params = { username: 'Test User',
+                 email: 'email@example.com',
+                 password: 'password' }
       post '/signup', params
       user = User.last
       expect(last_response.status).to eq(302)
@@ -40,14 +45,18 @@ describe UsersController do
     end
 
     it 'fails with blank username' do
-      params = { username: '', email: 'email@example.com', password: 'password' }
+      params = { username: '',
+                 email: 'email@example.com',
+                 password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with invalid email' do
-      params = { username: 'Test User', email: 'email@', password: 'password' }
+      params = { username: 'Test User',
+                 email: 'email@',
+                 password: 'password' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
@@ -61,14 +70,18 @@ describe UsersController do
     end
 
     it 'fails with invalid password' do
-      params = { username: 'Test User', email: 'email@example.com', password: 'passwor' }
+      params = { username: 'Test User',
+                 email: 'email@example.com',
+                 password: 'passwor' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with blank password' do
-      params = { username: 'Test User', email: 'email@example.com', password: '' }
+      params = { username: 'Test User',
+                 email: 'email@example.com',
+                 password: '' }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
@@ -77,7 +90,9 @@ describe UsersController do
 
   describe 'Log Out' do
     before do
-      @user1 = User.create(username: 'Test User', email: 'email@example.com', password: 'password')
+      @user1 = User.create(username: 'Test User',
+                           email: 'email@example.com',
+                           password: 'password')
     end
 
     it 'logs out if logged in' do
