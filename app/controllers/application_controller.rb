@@ -1,20 +1,21 @@
+# frozen_string_literal: true
 require './config/environment'
 require 'rack-flash'
 
+# Main app controller
 class ApplicationController < Sinatra::Base
-
   configure do
     enable :sessions
-    set :session_secret, "rate_your_rep_secret_sessions"
+    set :session_secret, 'rate_your_rep_secret_sessions'
     set :public_folder, 'public'
     set :views, 'app/views'
   end
 
   configure :production do
-    set :database, { adapter: 'postgresql',
-                     encoding: 'unicode',
-                     database: 'rate_your_rep',
-                     pool: 2 }
+    set :database, adapter: 'postgresql',
+                   encoding: 'unicode',
+                   database: 'rate_your_rep',
+                   pool: 2
   end
 
   use Rack::Flash
