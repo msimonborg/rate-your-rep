@@ -9,6 +9,7 @@ module APIFindable
   end
 
   def update_rep_personal_data(rep_hash)
+    self.active           = rep_hash['active']
     self.given_name       = rep_hash['first']
     self.family_name      = rep_hash['last']
     self.additional_name  = rep_hash['middle']
@@ -58,6 +59,12 @@ module APIFindable
       parse_reps
     end
 
+    def fetch_full_index
+      url = "https://phone-your-rep.herokuapp.com/reps"
+      @response = HTTParty.get(url).parsed_response
+      parse_reps
+    end
+
     def parse_reps
       @response.map do |rep_hash|
         db_rep = Rep.find_or_create_by bioguide_id: rep_hash['bioguide_id']
@@ -80,7 +87,7 @@ module APIFindable
           office_type: office['office_type']
         )
         # Update the phone since it can be subject to change
-        db_ol.update(phone: office['phone'])
+        db_ol.update(office_id: office['office_id'], phone: office['phone'], active: office['active'])
       end
     end
   end

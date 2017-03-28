@@ -18,3 +18,10 @@ desc 'Open a pry console'
 task :console do
   Pry.start
 end
+
+desc 'Update reps and office_locations'
+task :update do
+  Rep.all.each { |rep| rep.update active: false }
+  OfficeLocation.all.each { |office| office.update active: false }
+  Rep.fetch_full_index
+end

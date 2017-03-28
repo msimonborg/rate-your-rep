@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328220201) do
+ActiveRecord::Schema.define(version: 20170328221922) do
 
   create_table "calls", force: :cascade do |t|
     t.string   "bioguide_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170328220201) do
     t.string   "phone"
     t.string   "office_type"
     t.boolean  "active",      default: true
+    t.string   "office_id"
   end
 
   create_table "reps", force: :cascade do |t|
