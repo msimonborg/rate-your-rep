@@ -18,6 +18,7 @@ class Rep < ActiveRecord::Base
             :party_identification,
             presence: true
 
+  scope :active, -> { where active: true }
   scope :most_called, -> {
     select('reps.*, count(calls.id) AS calls_count').
       joins(:calls).

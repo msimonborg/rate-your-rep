@@ -30,4 +30,6 @@ class OfficeLocation < ActiveRecord::Base
       group('office_locations.id').
       order('calls_rating DESC')
   }
+
+  scope :active, -> { where active: true }
 end
