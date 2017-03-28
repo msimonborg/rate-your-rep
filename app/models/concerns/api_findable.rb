@@ -80,6 +80,7 @@ module APIFindable
     def parse_office_locations(rep_hash)
       rep_hash['office_locations'].each do |office|
         db_ol = OfficeLocation.find_or_create_by(
+          office_id:   office['office_id'],
           bioguide_id: office['bioguide_id'],
           locality:    office['city'],
           region:      office['state'],
@@ -87,7 +88,7 @@ module APIFindable
           office_type: office['office_type']
         )
         # Update the phone since it can be subject to change
-        db_ol.update(office_id: office['office_id'], phone: office['phone'], active: office['active'])
+        db_ol.update(phone: office['phone'], active: office['active'])
       end
     end
   end
