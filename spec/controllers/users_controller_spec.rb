@@ -35,9 +35,13 @@ describe UsersController do
 
   describe 'Sign Up' do
     it 'succeeds with valid username, email, and password' do
-      params = { username: 'Test User',
-                 email: 'email@example.com',
-                 password: 'password' }
+      params = {
+        user: {
+          username: 'Test User',
+          email: 'email@example.com',
+          password: 'password'
+        }
+      }
       post '/signup', params
       user = User.last
       expect(last_response.status).to eq(302)
@@ -45,43 +49,65 @@ describe UsersController do
     end
 
     it 'fails with blank username' do
-      params = { username: '',
-                 email: 'email@example.com',
-                 password: 'password' }
+      params = {
+        user: {
+          username: '',
+          email: 'email@example.com',
+          password: 'password'
+        }
+      }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with invalid email' do
-      params = { username: 'Test User',
-                 email: 'email@',
-                 password: 'password' }
+      params = {
+        user: {
+          username: 'Test User',
+          email: 'email@',
+          password: 'password'
+        }
+      }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with blank email' do
-      params = { username: 'Test User', email: '', password: 'password' }
+      params = {
+        user: {
+          username: 'Test User',
+          email: '',
+          password: 'password'
+        }
+      }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with invalid password' do
-      params = { username: 'Test User',
-                 email: 'email@example.com',
-                 password: 'passwor' }
+      params = {
+        user: {
+          username: 'Test User',
+          email: 'email@example.com',
+          password: 'passwor'
+        }
+      }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')
     end
 
     it 'fails with blank password' do
-      params = { username: 'Test User',
-                 email: 'email@example.com',
-                 password: '' }
+      params = {
+        user: {
+          username: 'Test User',
+          email: 'email@example.com',
+          password: ''
+        }
+      }
       post '/signup', params
       expect(last_response.status).to eq(302)
       expect(last_response.location).to_not include('/users')

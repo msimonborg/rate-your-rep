@@ -26,7 +26,9 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.new params
+    redirect '/' if logged_in?
+    binding.pry
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
@@ -104,5 +106,15 @@ class UsersController < ApplicationController
     else
       redirect "/users/#{current_user.slug}/edit"
     end
+  end
+
+  private
+
+  def user_params
+    {
+      username: params[:user][:username],
+      email: params[:user][:email],
+      password: params[:user][:password]
+    }
   end
 end
