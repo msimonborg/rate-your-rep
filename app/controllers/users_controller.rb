@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   post '/signup' do
     redirect '/' if logged_in?
-    binding.pry
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id

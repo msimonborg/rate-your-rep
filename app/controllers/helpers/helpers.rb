@@ -3,11 +3,11 @@
 # Helper methods for controllers and views
 module Helpers
   def logged_in?
-    !session[:user_id].blank?
+    !current_user.blank?
   end
 
   def current_user
-    logged_in? && User.find(session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def partial(page, options = {})
