@@ -3,7 +3,6 @@
   <form class="new-call-form form-horizontal" action="/calls" method="post">
     <input type="hidden" name="bioguide_id" value="<%= @office.bioguide_id %>">
     <input type="hidden" name="office_location_id" value="<%= @office.id %>">
-    <input type="hidden" name="user_id" value="<%= current_user.id %>">
     <div class="form-group">
       <!-- <label for="inputUsername3" class="col-sm-2 control-label">Username</label> -->
       <div class="col-sm-8 col-sm-offset-2">
