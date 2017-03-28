@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228125359) do
+ActiveRecord::Schema.define(version: 20170328220201) do
 
   create_table "calls", force: :cascade do |t|
     t.string   "bioguide_id"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20170228125359) do
     t.string   "locality"
     t.string   "region"
     t.string   "postal_code"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "phone"
     t.string   "office_type"
+    t.boolean  "active",      default: true
   end
 
   create_table "reps", force: :cascade do |t|
@@ -46,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170228125359) do
     t.string   "honorific_prefix"
     t.string   "honorific_suffix"
     t.string   "party_identification"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "state"
     t.string   "vcard"
     t.string   "photo"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170228125359) do
     t.string   "youtube"
     t.string   "facebook"
     t.string   "instagram"
+    t.boolean  "active",               default: true
   end
 
   create_table "users", force: :cascade do |t|
