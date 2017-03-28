@@ -60,7 +60,7 @@ module APIFindable
     end
 
     def fetch_full_index
-      url = "https://phone-your-rep.herokuapp.com/reps"
+      url = 'https://phone-your-rep.herokuapp.com/reps'
       @response = HTTParty.get(url).parsed_response
       parse_reps
     end
@@ -79,16 +79,14 @@ module APIFindable
 
     def parse_office_locations(rep_hash)
       rep_hash['office_locations'].each do |office|
-        db_ol = OfficeLocation.find_or_create_by(
-          office_id:   office['office_id'],
-          bioguide_id: office['bioguide_id'],
-          locality:    office['city'],
-          region:      office['state'],
-          postal_code: office['zip'],
-          office_type: office['office_type']
-        )
+        o = OfficeLocation.find_or_create_by(office_id:   office['office_id'],
+                                             bioguide_id: office['bioguide_id'],
+                                             locality:    office['city'],
+                                             region:      office['state'],
+                                             postal_code: office['zip'],
+                                             office_type: office['office_type'])
         # Update the phone since it can be subject to change
-        db_ol.update(phone: office['phone'], active: office['active'])
+        o.update(phone: office['phone'], active: office['active'])
       end
     end
   end
