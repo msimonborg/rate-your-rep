@@ -26,7 +26,11 @@
     </h2>
   </div>
   <div class="col-sm-6">
-    <img class="rep-photo" src="<%= @rep.photo %>" alt="<%= @rep.official_full %> photo portrait">
+    <% if @rep.photo %>
+      <img class="rep-photo" src="<%= @rep.photo %>" alt="<%= @rep.official_full %> photo portrait">
+    <% else %>
+      <img class="rep-photo" src="http://www.phoneyourrep.com/reps/images/person.png" alt="Person">
+    <% end %>
   </div>
   <div class="col-sm-6">
     <% if @rep.no_calls? %>
