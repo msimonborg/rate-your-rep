@@ -12,6 +12,7 @@ gem 'bcrypt'
 gem 'rack-flash3'
 gem 'httparty'
 gem 'tux'
+gem 'pyr', '~> 0.1.0'
 
 group :development, :test do
   gem 'sqlite3'
