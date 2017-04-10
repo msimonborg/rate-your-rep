@@ -18,7 +18,6 @@ class Rep < ActiveRecord::Base
             :party_identification,
             presence: true
 
-  scope :active, -> { where active: true }
   scope :most_called, -> {
     select('reps.*, count(calls.id) AS calls_count').
       joins(:calls).
@@ -32,6 +31,12 @@ class Rep < ActiveRecord::Base
       group('reps.id').
       order('calls_rating DESC')
   }
+
+  scope :active, -> { where active: true }
+  scope :democratic, -> { where party_identification: 'Democrat' }
+  scope :republican, -> { where party_identification: 'Republican' }
+  scope :senators, -> { where honorific_prefix: 'United States Senator' }
+  scope :representatives, -> { where honorific_prefix: 'United States Representative' }
 
   def office_locations_count
     office_locations.count
