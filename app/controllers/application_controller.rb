@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './config/environment'
 require 'rack-flash'
 # Main app controller

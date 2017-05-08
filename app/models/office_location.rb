@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # The OfficeLocation has the phone data and is the object on which
 # a call is made.
 class OfficeLocation < ActiveRecord::Base

@@ -1,5 +1,15 @@
 # frozen_string_literal: true
+
 ENV['SINATRA_ENV'] = 'test'
+
+require 'simplecov'
+require 'coveralls'
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+
+SimpleCov.start
 
 require_relative '../config/environment'
 require 'rack/test'

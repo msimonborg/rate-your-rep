@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Rep object is created from data retrieved by an API call
 class Rep < ActiveRecord::Base
   include APIFindable
@@ -36,7 +37,9 @@ class Rep < ActiveRecord::Base
   scope :democratic, -> { where party_identification: 'Democrat' }
   scope :republican, -> { where party_identification: 'Republican' }
   scope :senators, -> { where honorific_prefix: 'United States Senator' }
-  scope :representatives, -> { where honorific_prefix: 'United States Representative' }
+  scope :representatives, -> {
+    where honorific_prefix: 'United States Representative'
+  }
 
   def office_locations_count
     office_locations.count
