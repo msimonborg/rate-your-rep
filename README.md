@@ -1,4 +1,6 @@
-<a href="https://codeclimate.com/github/msimonborg/rate-your-rep"><img src="https://codeclimate.com/github/msimonborg/rate-your-rep/badges/gpa.svg" /></a>
+[![Code Climate](https://codeclimate.com/github/msimonborg/rate-your-rep/badges/gpa.svg)](https://codeclimate.com/github/msimonborg/rate-your-rep)
+[![Build Status](https://travis-ci.org/msimonborg/rate-your-rep.svg?branch=master)](https://travis-ci.org/msimonborg/rate-your-rep)
+[![Coverage Status](https://coveralls.io/repos/github/msimonborg/rate-your-rep/badge.svg?branch=master)](https://coveralls.io/github/msimonborg/rate-your-rep?branch=master)
 #Rate Your Rep
 ####See it on [Heroku](https://rateyourrep.herokuapp.com)
 #Calling is an effective way to participate in our democracy.
