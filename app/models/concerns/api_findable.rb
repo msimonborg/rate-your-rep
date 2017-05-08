@@ -28,11 +28,11 @@ module APIFindable
   end
 
   def update_rep_political_data(rep)
-    self.district             = rep.district['code'] if rep.district
+    self.district             = rep.district.code if rep.district
     self.official_full        = rep.official_full
     self.honorific_prefix     = rep.role
     self.party_identification = rep.party
-    self.state                = rep.state['name']
+    self.state                = rep.state.name
     self.photo                = rep.photo
   end
 
