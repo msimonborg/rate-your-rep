@@ -14,61 +14,61 @@
 
 ActiveRecord::Schema.define(version: 20_170_328_221_922) do
   create_table 'calls', force: :cascade do |t|
-    t.string   'bioguide_id'
-    t.string   'comments'
-    t.boolean  'got_through',        default: false
-    t.boolean  'busy',               default: false
-    t.boolean  'voice_mail',         default: false
-    t.boolean  'mailbox_full',       default: false
-    t.integer  'rating'
-    t.integer  'user_id'
-    t.integer  'office_location_id'
-    t.datetime 'created_at',                         null: false
-    t.datetime 'updated_at',                         null: false
+    t.string 'bioguide_id'
+    t.string 'comments'
+    t.boolean 'got_through', default: false
+    t.boolean 'busy', default: false
+    t.boolean 'voice_mail', default: false
+    t.boolean 'mailbox_full', default: false
+    t.integer 'rating'
+    t.integer 'user_id'
+    t.integer 'office_location_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'office_locations', force: :cascade do |t|
-    t.string   'bioguide_id'
-    t.string   'locality'
-    t.string   'region'
-    t.string   'postal_code'
-    t.datetime 'created_at',                 null: false
-    t.datetime 'updated_at',                 null: false
-    t.string   'phone'
-    t.string   'office_type'
-    t.boolean  'active', default: true
-    t.string   'office_id'
+    t.string 'bioguide_id'
+    t.string 'locality'
+    t.string 'region'
+    t.string 'postal_code'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'phone'
+    t.string 'office_type'
+    t.boolean 'active', default: true
+    t.string 'office_id'
   end
 
   create_table 'reps', force: :cascade do |t|
-    t.string   'bioguide_id'
-    t.string   'official_full'
-    t.string   'family_name'
-    t.string   'given_name'
-    t.string   'additional_name'
-    t.string   'honorific_prefix'
-    t.string   'honorific_suffix'
-    t.string   'party_identification'
-    t.datetime 'created_at',                          null: false
-    t.datetime 'updated_at',                          null: false
-    t.string   'state'
-    t.string   'vcard'
-    t.string   'photo'
-    t.string   'district'
-    t.string   'url'
-    t.string   'twitter'
-    t.string   'youtube'
-    t.string   'facebook'
-    t.string   'instagram'
-    t.boolean  'active', default: true
+    t.string 'bioguide_id'
+    t.string 'official_full'
+    t.string 'family_name'
+    t.string 'given_name'
+    t.string 'additional_name'
+    t.string 'honorific_prefix'
+    t.string 'honorific_suffix'
+    t.string 'party_identification'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'state'
+    t.string 'vcard'
+    t.string 'photo'
+    t.string 'district'
+    t.string 'url'
+    t.string 'twitter'
+    t.string 'youtube'
+    t.string 'facebook'
+    t.string 'instagram'
+    t.boolean 'active', default: true
   end
 
   create_table 'users', force: :cascade do |t|
-    t.string   'username'
-    t.string   'email'
-    t.string   'password_digest'
-    t.datetime 'created_at',      null: false
-    t.datetime 'updated_at',      null: false
-    t.string   'slug'
+    t.string 'username'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'slug'
   end
 end

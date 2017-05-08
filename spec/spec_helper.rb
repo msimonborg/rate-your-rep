@@ -17,7 +17,7 @@ require 'capybara/rspec'
 require 'capybara/dsl'
 
 if ActiveRecord::Migrator.needs_migration?
-  raise 'Migrations are pending. Run  to resolve the issue.'
+  raise 'Migrations are pending. Run to resolve the issue.'
 end
 
 ActiveRecord::Base.logger = nil
