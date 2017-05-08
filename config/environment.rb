@@ -7,12 +7,6 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 
 if production?
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
-elsif test?
-  ActiveRecord::Base.establish_connection(
-    adapter: 'sqlite3',
-    database: ':memory:',
-    timeout: 500
-  )
 else
   ActiveRecord::Base.establish_connection(
     adapter: 'sqlite3',
