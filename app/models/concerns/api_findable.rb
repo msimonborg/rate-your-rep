@@ -37,7 +37,13 @@ module APIFindable
   end
 
   def parse_vcard_url(rep)
-    rep.office_locations.where(office_type: 'capitol').first.v_card_link
+    capitol_office = rep.office_locations.where(office_type: 'capitol').first
+    if capitol_office
+      capitol_office.v_card_link
+    else
+      district_office = rep.office_locations.where(office_type: 'district').first
+      district_office.v_card_link if district_office
+    end
   end
 
   # Methods that make calls to the API, find, create, and return objects

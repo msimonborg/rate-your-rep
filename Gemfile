@@ -6,7 +6,7 @@ ruby '2.4.1'
 
 gem 'activerecord', '~> 5.1.0', require: 'active_record'
 gem 'bcrypt', '~> 3.1.0', '>= 3.1.11'
-gem 'pyr', '~> 0.3.0', '>= 0.3.6'
+gem 'pyr', '~> 0.4.0'
 gem 'rack-flash3', '~> 1.0.0', '>= 1.0.5'
 gem 'rake', '~> 12.0.0'
 gem 'require_all', '~> 1.4.0'
