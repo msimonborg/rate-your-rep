@@ -41,8 +41,8 @@ module APIFindable
     if capitol_office
       capitol_office.v_card_link
     else
-      district_office = rep.office_locations.where(office_type: 'district').first
-      district_office.v_card_link if district_office
+      dist_office = rep.office_locations.where(office_type: 'district').first
+      dist_office&.v_card_link
     end
   end
 

@@ -10,6 +10,7 @@ gem 'pyr', '~> 0.4.0'
 gem 'rack-flash3', '~> 1.0.0', '>= 1.0.5'
 gem 'rake', '~> 12.0.0'
 gem 'require_all', '~> 1.4.0'
+gem 'safe_yaml'
 gem 'sinatra', '~> 2.0.2'
 gem 'sinatra-activerecord',
     '~> 2.0.0',
